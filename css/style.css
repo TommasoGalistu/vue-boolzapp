@@ -5,10 +5,10 @@
 }
 
 .containerStyle{
-
 }
 
 .parteAlta{
+    position: relative;
     height: 6rem;
     background-color: #009688;
 }
@@ -17,3 +17,16 @@
     height: calc(100vh - 6rem);
     background-color: #d5dbd7;
 }
+
+.contPrincipale{
+    position: absolute;
+    left: 50%;
+    top: 2rem;
+    transform: translate(-50%);
+    margin: auto;
+    height: calc(100vh - 2rem * 2);
+    width: 70rem;
+    background-color: black;
+    
+}
+
