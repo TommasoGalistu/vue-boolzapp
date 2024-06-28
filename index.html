@@ -53,13 +53,11 @@
 
                     <!-- persone in chat elenco -->
                     <div class="containerAmici">
-                        <div class="person">
+                        <div class="person" v-for="amico in contacts">
                             <div class="icon">
-                                <div class="contFoto align-self">
-    
-                                </div>
+                                <div class="contFoto align-self"></div>
                                 <div class="testo persona-orario">
-                                    <span class="">Nome</span>
+                                    <span class="">{{amico.name}}</span>
                                     <p class="testoPocoRisalto">quello scritto in chat</p>
 
                                 </div>
@@ -68,51 +66,7 @@
                                 <span class="testoPocoRisalto">12:00</span>
                             </div>
                         </div>
-                        <div class="person">
-                            <div class="icon">
-                                <div class="contFoto align-self">
-    
-                                </div>
-                                <div class="testo persona-orario">
-                                    <span class="">Nome</span>
-                                    <p class="testoPocoRisalto">quello scritto in chat</p>
-
-                                </div>
-                            </div>
-                            <div class="navMenu persona-orario">
-                                <span class="testoPocoRisalto">12:00</span>
-                            </div>
-                        </div>
-                        <div class="person">
-                            <div class="icon">
-                                <div class="contFoto align-self">
-    
-                                </div>
-                                <div class="testo persona-orario">
-                                    <span class="">Nome</span>
-                                    <p class="testoPocoRisalto">quello scritto in chat</p>
-
-                                </div>
-                            </div>
-                            <div class="navMenu persona-orario">
-                                <span class="testoPocoRisalto">12:00</span>
-                            </div>
-                        </div>
-                        <div class="person">
-                            <div class="icon">
-                                <div class="contFoto align-self">
-    
-                                </div>
-                                <div class="testo persona-orario">
-                                    <span class="">Nome</span>
-                                    <p class="testoPocoRisalto">quello scritto in chat</p>
-
-                                </div>
-                            </div>
-                            <div class="navMenu persona-orario">
-                                <span class="testoPocoRisalto">12:00</span>
-                            </div>
-                        </div>
+                        
                         
                         
                     </div>
@@ -138,13 +92,13 @@
                     </div>
                     <div class="sfondo">
                         <div class="contMessaggi">
-                                <p class="messaggioInviato">ciao sono io <span class="orarioInvio">12:00</span></p>
-                                <p class="messaggioRicevuto">ciao sono l'altro e scrivo un testo lunghissimoooooooooooooooo <span class="orarioInvio">12:00</span></p>
+                                <p :class="classeMessaggi"  v-for="(messaggio, index) in contacts[0].messages">{{messaggioInviato(messaggio)}}<span class="orarioInvio">12:00</span></p>
+                                
                         </div>
                     </div>
                     <div class="chattaContainer">
                         <i class="fa-regular fa-face-smile"></i>
-                        <input type="text">
+                        <input type="text" placeholder="Scrivi un messaggio">
                         <i class="fa-solid fa-microphone"></i>
                     </div>
                 </div>
