@@ -2,6 +2,8 @@ const { createApp, ref, onMounted } = Vue;
 
 createApp({
   setup() {
+
+    // elenco dati persone
     const contacts = ref([
       {
           name: 'Michele',
@@ -165,18 +167,28 @@ createApp({
           ],
       }
     ])
-    let classeMessaggi = '';
-  
+    // numero che va ad aggiornare le chat al click
+    const numAmico = ref(0);
+
+    // classe per visualizzazione chat attiva
+    const active = ref('');
+    // inserimento dinamico della chat
     const messaggioInviato = (messaggio) => {
       if(messaggio.status === 'sent'){
-        classeMessaggi = 'messaggioInviato';
+        return messaggio.message
         
       }else{
-        classeMessaggi = 'messaggioRicevuto';
+        return messaggio.message
         
-      }
-      return messaggio.message
-      
+      } 
+    }
+
+
+    // click della persona e visualizzazione della chat
+    const selezionaPersona = (persona, posizione) =>{
+        numAmico.value = posizione;
+        console.log(posizione, persona);
+        
     }
     
   onMounted(() => {
@@ -185,7 +197,9 @@ createApp({
     return {
       contacts,
       messaggioInviato,
-      classeMessaggi
+      numAmico,
+      selezionaPersona,
+      active
     };
   }
 }).mount('#app');

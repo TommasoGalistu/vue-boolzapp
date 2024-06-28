@@ -147,14 +147,14 @@
     text-align: center;
     padding: 1rem;
 }
-.messaggioInviato{
+.sent{
     align-self: flex-end;
     background-color: #d5f9ba;
 }
-.messaggioRicevuto{
+.received{
     background-color: white;
 }
-.messaggioInviato, .messaggioRicevuto{
+.sent, .received{
     max-width: 40%;
     min-width: 30;
     text-align: left;
@@ -171,4 +171,8 @@
     padding: 0.5rem;
     border-radius: 10px;
     margin: 0.5rem;
+}
+
+.active{
+    background-color: grey;
 }
