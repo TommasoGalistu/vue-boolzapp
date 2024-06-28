@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.containerStyle{
+
+}
+
+.parteAlta{
+    height: 6rem;
+    background-color: #009688;
+}
+
+.parteBassa{
+    height: calc(100vh - 6rem);
+    background-color: #d5dbd7;
+}
