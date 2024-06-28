@@ -50,7 +50,7 @@
 }
 
 .person{
-    height: 3.5rem;
+    height: var(--altezzaPersona);
     width: 100%;
     border-top: 1px solid #e9ebeb;
     display: flex;
@@ -119,4 +119,23 @@
     width: 100%;
     background-color: white;
     overflow-y: auto;
+}
+
+.sfondo{
+    height: calc(100% - var(--altezzaPersona) * 2);
+    background-image: url('../img/chatSfondo.jpg');
+    
+}
+
+.chattaContainer{
+    padding: 0 1rem;
+    height: var(--altezzaPersona);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chattaContainer input{
+    width: 70%;
 }
