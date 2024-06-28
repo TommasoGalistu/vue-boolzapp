@@ -53,7 +53,7 @@
 
                     <!-- persone in chat elenco -->
                     <div class="containerAmici">
-                        <div class="person" :class="active" v-for="(amico, index) in contacts" :key="index" @click="selezionaPersona(amico, index)">
+                        <div class="person" :class="numAmico === index ? 'active': ''" v-for="(amico, index) in contacts" :key="index" @click="selezionaPersona(amico, index)">
                             <div class="icon">
                                 <div class="contFoto align-self"></div>
                                 <div class="testo persona-orario">
@@ -79,7 +79,7 @@
 
                             </div>
                             <div class="testo">
-                                <span>Nome</span>
+                                <span>{{contacts[numAmico].name}}</span>
                                 <p class="testoPocoRisalto">Ultimo accesso di oggi alle 12:00</p>
 
                             </div>

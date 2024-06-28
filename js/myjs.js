@@ -165,6 +165,28 @@ createApp({
                   status: 'received'
               }
           ],
+      },
+      {
+          name: 'Barbara',
+          avatar: './img/avatar_8.png',
+          visible: true,
+          messages: [
+              {
+                  date: '10/01/2020 15:30:55',
+                  message: 'Ho finalmente pulito la lettiera',
+                  status: 'received'
+              },
+              {
+                  date: '10/01/2020 15:50:00',
+                  message: 'Brava, hai fatto il tuo lavoro!!!',
+                  status: 'sent'
+              },
+              {
+                  date: '10/01/2020 15:51:00',
+                  message: 'Non ti permettere mai più, da oggi in poi non la pulisco più',
+                  status: 'received'
+              }
+          ],
       }
     ])
     // numero che va ad aggiornare le chat al click
@@ -187,7 +209,6 @@ createApp({
     // click della persona e visualizzazione della chat
     const selezionaPersona = (persona, posizione) =>{
         numAmico.value = posizione;
-        console.log(posizione, persona);
         
     }
     
