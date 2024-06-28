@@ -139,3 +139,36 @@
 .chattaContainer input{
     width: 70%;
 }
+
+.contMessaggi{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    padding: 1rem;
+}
+.messaggioInviato{
+    align-self: flex-end;
+    background-color: #d5f9ba;
+}
+.messaggioRicevuto{
+    background-color: white;
+}
+.messaggioInviato, .messaggioRicevuto{
+    max-width: 40%;
+    min-width: 30%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.orarioInvio{
+    font-size: 0.6rem;
+    align-self: flex-end;
+}
+
+.contMessaggi p{
+    padding: 0.5rem;
+    border-radius: 10px;
+    margin: 0.5rem;
+}
