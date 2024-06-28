@@ -13,6 +13,8 @@
     <link rel="icon" type="image/x-icon" href="img/whatsapp.svg">
     <!-- link variable -->
      <link rel="stylesheet" href="css/variable.css">
+     <!-- link hover -->
+      <link rel="stylesheet" href="css/hover.css">
     <!-- style css -->
     <link rel="stylesheet" href="css/style.css">
 
@@ -25,7 +27,19 @@
                 <!-- parte di sinistra con le chat da cliccare -->
                 <nav class="containerNav">
                     <!-- avatar del proprietario -->
-                    <div class="person pricipal"></div>
+                    <div class="person pricipal">
+                        <div class="icon">
+                            <div class="contFoto">
+
+                            </div>
+                            <span>Nome</span>
+                        </div>
+                        <div class="navMenu">
+                            <i class="fa-solid fa-circle-notch"></i>
+                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
                     <!-- attiva e disattiva notifiche -->
                     <div class="notifiche"></div>
                     <!-- input di ricerca persone -->
@@ -33,19 +47,40 @@
                         <input type="text">
                     </div>
                     <div class="containerAmici">
-                        <div class="person"></div>
-                        <div class="person"></div>
-                        <div class="person"></div>
-                        <div class="person"></div>
-                        <div class="person"></div>
-                        <div class="person"></div>
-                        <div class="person"></div>
-                        <div class="person"></div>
+                        <div class="person">
+                            <div class="icon">
+                                <div class="contFoto align-self">
+    
+                                </div>
+                                <div class="testo persona-orario">
+                                    <span class="">Nome</span>
+                                    <p class="testoPocoRisalto">quello scritto in chat</p>
+
+                                </div>
+                            </div>
+                            <div class="navMenu persona-orario">
+                                <span class="testoPocoRisalto">12:00</span>
+                            </div>
+                        </div>
+                        
+                        
                     </div>
                 </nav>
                 <!-- parte di destra con la chat aperta -->
                 <div class="containerChat">
+                    <div class="person pricipal">
+                        <div class="icon">
+                            <div class="contFoto">
 
+                            </div>
+                            <span>Nome</span>
+                        </div>
+                        <div class="navMenu">
+                            <i class="fa-solid fa-circle-notch"></i>
+                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

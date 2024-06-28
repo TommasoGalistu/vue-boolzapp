@@ -35,21 +35,63 @@
 .containerNav{
     width: calc((var(--larghezzaFInestra) / 12) * 4);
     height: 100%;
-    border: 1px solid black;
+    border: 0.25px solid #d7d7d7;
 }
 
 .containerChat{
     width: calc((var(--larghezzaFInestra) / 12) * 8);
-    border: 1px solid black;
+    border: 0.25px solid #d7d7d7;
 }
 .person.pricipal{
     background-color: #eaeaea;
+    position: relative;
+    align-items: center;
 }
+
 .person{
     height: 3.5rem;
     width: 100%;
     border-top: 1px solid #e9ebeb;
+    display: flex;
+    justify-content: space-between;
+    
+    
 }
+.pricipal .icon{
+    align-items: center;
+}
+.icon{
+    display: flex;
+}
+
+.align-self{
+    align-self: center;
+}
+
+.persona-orario{
+    margin-top: 0.5rem;
+}
+
+.testoPocoRisalto{
+    color: #b1b1b1;
+}
+.contFoto{
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    margin: 0 0.5rem;
+    background-color: black;
+}
+
+.navMenu{
+    margin-right: 0.5rem;
+}
+.navMenu .fa-solid{
+    padding: 0.5rem;
+    color: #b1b1b1;
+    border-radius: 10px;
+}
+
 .notifiche{
     height: 4rem;
     width: 100%;
@@ -74,4 +116,5 @@
     height: calc(100% - 9.5rem);
     width: 100%;
     background-color: white;
+    overflow-y: auto;
 }
