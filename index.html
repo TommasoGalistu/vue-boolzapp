@@ -53,12 +53,12 @@
 
                     <!-- persone in chat elenco -->
                     <div class="containerAmici">
-                        <div class="person" :class="numAmico === index ? 'active': ''" v-for="(amico, index) in contatti" :key="index" @click="selezionaPersona(amico, index)">
+                        <div class="person" :class="numAmico === index ? 'active': ''" v-for="(amico, index) in contatti" :key="index" @click="selezionaPersona(index)">
                             <div class="icon">
                                 <div class="contFoto align-self"></div>
                                 <div class="testo persona-orario">
                                     <span class="">{{amico.name}}</span>
-                                    <p class="testoPocoRisalto">quello scritto in chat</p>
+                                    <p class="testoPocoRisalto">{{amico.messages[amico.messages.length - 1].message}}</p>
 
                                 </div>
                             </div>

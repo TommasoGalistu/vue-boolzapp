@@ -245,13 +245,12 @@ createApp({
     const filtraAmici = () =>{
         if(inputForFilter.value.length > 0){
             contactsFilter.value = contacts.value.filter(persona =>{
-                contatti.value = contactsFilter.value
+                contatti.value = contactsFilter.value;
                 for (let i = 0; i < contacts.value.length; i++) {
                    return persona.name[i].toLowerCase() === inputForFilter.value[i].toLowerCase()  
                 }
                 
                })
-               console.log(contactsFilter.value)
         }else{
             contatti.value = contacts.value
         }
