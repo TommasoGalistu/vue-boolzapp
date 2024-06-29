@@ -197,33 +197,28 @@ createApp({
     const contatti = ref(contacts.value);
     // numero che va ad aggiornare le chat al click
     const numAmico = ref(0);
-
+    // numero che identifica la posizione del messaggio in chat
+    const numMessaggio = ref(0);
     // classe per visualizzazione chat attiva
     const active = ref('');
-
+    // messaggio nuovo da inviare da input
     const messaggioNuovo = ref(
     {
         date: '10/01/2020 15:30:55',
         message: '',
         status: 'sent'
     });
-
+    // format risposta automatica
     const risposta = ref(
         {
             date: '10/01/2020 15:30:55',
             message: 'OK!!',
             status: 'received'
         });
-    
     // inserimento dinamico della chat
     const messaggioInviato = (messaggio) => {
-      if(messaggio.status === 'sent'){
         return messaggio.message
-        
-      }else{
-        return messaggio.message
-        
-      } 
+      
     };
 
     // click della persona e visualizzazione della chat
@@ -256,6 +251,12 @@ createApp({
         }
         
     };
+
+    const aperturaMenu = (posizione) =>{
+        // aprire la finestra delle impostazioni
+        return numMessaggio.value = posizione;
+        
+    }
     
     
   onMounted(() => {
@@ -273,7 +274,9 @@ createApp({
       filtraAmici,
       contactsFilter,
       inputForFilter,
-      contatti
+      contatti,
+      aperturaMenu,
+      numMessaggio
     };
   }
 }).mount('#app');
