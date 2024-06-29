@@ -194,6 +194,21 @@ createApp({
 
     // classe per visualizzazione chat attiva
     const active = ref('');
+
+    const messaggioNuovo = ref(
+    {
+        date: '10/01/2020 15:30:55',
+        message: '',
+        status: 'sent'
+    });
+
+    const risposta = ref(
+        {
+            date: '10/01/2020 15:30:55',
+            message: 'OK!!',
+            status: 'received'
+        });
+    
     // inserimento dinamico della chat
     const messaggioInviato = (messaggio) => {
       if(messaggio.status === 'sent'){
@@ -203,13 +218,20 @@ createApp({
         return messaggio.message
         
       } 
-    }
-
+    };
 
     // click della persona e visualizzazione della chat
-    const selezionaPersona = (persona, posizione) =>{
+    const selezionaPersona = (posizione) =>{
         numAmico.value = posizione;
         
+    };
+
+    const invioMessaggio = () =>{
+        contacts.value[numAmico.value].messages.push({...messaggioNuovo.value});
+        messaggioNuovo.value.message = ''
+        setTimeout(() =>{
+            contacts.value[numAmico.value].messages.push({...risposta.value});
+        }, 2000)
     }
     
   onMounted(() => {
@@ -220,10 +242,10 @@ createApp({
       messaggioInviato,
       numAmico,
       selezionaPersona,
-      active
+      active,
+      messaggioNuovo,
+      invioMessaggio,
+      risposta
     };
   }
 }).mount('#app');
-
-
-    
