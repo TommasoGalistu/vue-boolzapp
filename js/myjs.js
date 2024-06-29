@@ -188,7 +188,13 @@ createApp({
               }
           ],
       }
-    ])
+    ]);
+    // contatti filtrati da input utente
+    const contactsFilter = ref([]);
+    // input utente per filtrare persone
+    const inputForFilter = ref('');
+    // variabile che decide quali amici, filtrati o no, da aggiungere alla lista
+    const contatti = ref(contacts.value);
     // numero che va ad aggiornare le chat al click
     const numAmico = ref(0);
 
@@ -226,13 +232,32 @@ createApp({
         
     };
 
+    // invio messaggio e risposta automatica dopo 2 secondi
     const invioMessaggio = () =>{
         contacts.value[numAmico.value].messages.push({...messaggioNuovo.value});
         messaggioNuovo.value.message = ''
         setTimeout(() =>{
             contacts.value[numAmico.value].messages.push({...risposta.value});
         }, 2000)
-    }
+    };
+
+    // ricerca persone nella barra input
+    const filtraAmici = () =>{
+        if(inputForFilter.value.length > 0){
+            contactsFilter.value = contacts.value.filter(persona =>{
+                contatti.value = contactsFilter.value
+                for (let i = 0; i < contacts.value.length; i++) {
+                   return persona.name[i].toLowerCase() === inputForFilter.value[i].toLowerCase()  
+                }
+                
+               })
+               console.log(contactsFilter.value)
+        }else{
+            contatti.value = contacts.value
+        }
+        
+    };
+    
     
   onMounted(() => {
 });
@@ -245,7 +270,11 @@ createApp({
       active,
       messaggioNuovo,
       invioMessaggio,
-      risposta
+      risposta,
+      filtraAmici,
+      contactsFilter,
+      inputForFilter,
+      contatti
     };
   }
 }).mount('#app');
