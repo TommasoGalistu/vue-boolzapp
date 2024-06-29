@@ -73,6 +73,7 @@
     margin-top: 0.5rem;
 }
 
+
 .testoPocoRisalto{
     color: #b1b1b1;
     font-size: 0.8rem;
@@ -152,6 +153,13 @@
     align-self: flex-end;
     background-color: #d5f9ba;
 }
+
+.sent .fa-angle-down{
+    color: #d5f9ba;
+}
+.received .fa-angle-down{
+    color: white;
+}
 .received{
     background-color: white;
 }
@@ -166,13 +174,25 @@
 .orarioInvio{
     font-size: 0.6rem;
     align-self: flex-end;
+    padding-left: 0.5rem;
+    padding-top: 0.8rem;
 }
+
 
 .contMessaggi p{
     padding: 0.5rem;
     border-radius: 10px;
     margin: 0.5rem;
+    position: relative;
 }
+
+.contMessaggi .fa-angle-down{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 0.5rem;
+}
+
 
 .active{
     background-color: rgb(216, 216, 216);

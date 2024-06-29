@@ -5,3 +5,12 @@
 .person:hover{
     cursor: pointer;
 }
+
+.sent:hover .fa-angle-down{
+    color: grey;
+    cursor: pointer;
+}
+.received:hover .fa-angle-down{
+    color: grey;
+    cursor: pointer;
+}
