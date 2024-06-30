@@ -198,7 +198,9 @@ createApp({
     // numero che va ad aggiornare le chat al click
     const numAmico = ref(0);
     // numero che identifica la posizione del messaggio in chat
-    const numMessaggio = ref(0);
+    const selectedMessage = ref(null);
+    // classe da aggiornare
+    const classeMenu = ref('');
     // classe per visualizzazione chat attiva
     const active = ref('');
     // messaggio nuovo da inviare da input
@@ -252,11 +254,17 @@ createApp({
         
     };
 
-    const aperturaMenu = (posizione) =>{
-        // aprire la finestra delle impostazioni
-        return numMessaggio.value = posizione;
-        
-    }
+    const aperturaMenu = (messaggio) => {
+        if (selectedMessage.value === messaggio) {
+          selectedMessage.value = null; // Chiudi il menu se il messaggio è già selezionato
+        } else {
+          selectedMessage.value = messaggio; // Altrimenti apri il menu per il messaggio cliccato
+        }
+      };
+  
+      const isVisible = (messaggio) => {
+        return selectedMessage.value === messaggio;
+      };
     
     
   onMounted(() => {
@@ -276,7 +284,9 @@ createApp({
       inputForFilter,
       contatti,
       aperturaMenu,
-      numMessaggio
+      selectedMessage,
+      classeMenu,
+      isVisible
     };
   }
 }).mount('#app');

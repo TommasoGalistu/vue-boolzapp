@@ -95,12 +95,12 @@
                         <div class="contMessaggi">
                                 <div :class="messaggio.status"  v-for="(messaggio, index) in contacts[numAmico].messages">
                                     {{messaggioInviato(messaggio)}}
-                                    <ul class="windImpostazioni" :class="messaggioInviato(messaggio) === contacts[numAmico].messages[numMessaggio].message ? 'visible' : ''">
+                                    <ul class="windImpostazioni" :class="{'visible': isVisible(messaggio)}">
                                         <li>Message info</li>
                                         <li>Delete message</li>
                                     </ul>
                                     <span class="orarioInvio">12:00</span>
-                                    <i class="fa-solid fa-angle-down" @click="aperturaMenu(index)"></i>
+                                    <i class="fa-solid fa-angle-down" @click="aperturaMenu(messaggio)"></i>
                                     <span class="windImpostazioni"></span>
                                 </div>
                                 
