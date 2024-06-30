@@ -64,7 +64,7 @@
                             </div>
                             <div class="navMenu persona-orario">
                                 
-                                <span class="testoPocoRisalto">12:00</span>
+                                <span class="testoPocoRisalto">{{ultimoMessaggio(index)}}</span>
                             </div>
                         </div>
                         
@@ -97,9 +97,9 @@
                                     {{messaggioInviato(messaggio)}}
                                     <ul class="windImpostazioni" :class="{'visible': isVisible(messaggio)}">
                                         <li>Message info</li>
-                                        <li @click="eliminateMessage(index, messaggio)">Delete message</li>
+                                        <li @click="eliminateMessage(index)">Delete message</li>
                                     </ul>
-                                    <span class="orarioInvio">12:00</span>
+                                    <span class="orarioInvio">15:00</span>
                                     <i class="fa-solid fa-angle-down" @click="aperturaMenu(messaggio)"></i>
                                     <span class="windImpostazioni"></span>
                                 </div>

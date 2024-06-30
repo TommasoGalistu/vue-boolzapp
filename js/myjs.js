@@ -1,4 +1,4 @@
-const { createApp, ref, onMounted } = Vue;
+const { createApp, ref, onMounted, computed } = Vue;
 
 createApp({
   setup() {
@@ -217,6 +217,7 @@ createApp({
             message: 'OK!!',
             status: 'received'
         });
+    
     // inserimento dinamico della chat
     const messaggioInviato = (messaggio) => {
         return messaggio.message
@@ -262,14 +263,19 @@ createApp({
         }
       };
   
-      const isVisible = (messaggio) => {
-        return selectedMessage.value === messaggio;
-      };
+    const isVisible = (messaggio) => {
+    return selectedMessage.value === messaggio;
+    };
     
-      const eliminateMessage = (posMessaggio, messaggio) => {
-        contacts.value[numAmico.value].messages.splice(posMessaggio, 1)
-        console.log(contacts.value[numAmico.value].messages[posMessaggio])
-      }
+    const eliminateMessage = (posMessaggio) => {
+    contacts.value[numAmico.value].messages.splice(posMessaggio, 1)
+    }
+    // orario dell'ultimo messaggio inviato o ricevuto
+    const ultimoMessaggio = (index) => {
+        const messaggi = contacts.value[index].messages;
+        const messaggio = messaggi[messaggi.length - 1];
+        return messaggio.date.slice(11, 16); // Estrai la sottostringa dell'orario
+    };
     
   onMounted(() => {
 });
@@ -291,7 +297,8 @@ createApp({
       selectedMessage,
       classeMenu,
       isVisible,
-      eliminateMessage
+      eliminateMessage,
+      ultimoMessaggio
     };
   }
 }).mount('#app');
