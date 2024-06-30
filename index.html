@@ -58,8 +58,8 @@
                                 <div class="contFoto align-self"></div>
                                 <div class="testo persona-orario">
                                     <span class="">{{amico.name}}</span>
-                                    
-                                    <p class="testoPocoRisalto">{{amico.messages[amico.messages.length - 1].message}}</p>
+                                    <p v-if="amico.messages.length > 0" class="testoPocoRisalto">{{amico.messages[amico.messages.length - 1].message}}</p>
+                                    <p v-else class="testoPocoRisalto"></p>
 
                                 </div>
                             </div>
@@ -94,14 +94,12 @@
                         </div>
                     </div>
                     <div class="sfondo">
-                        <div class="contMessaggi">
+                        <div class="contMessaggi"  v-if="contacts[numAmico].messages.length > 0">
                                 <div class="messaggio" :class="messaggio.status"  v-for="(messaggio, index) in contacts[numAmico].messages">
-                                    <div v-if="contacts[numAmico].messages.length > 0">
+                                    <div>
                                         {{messaggioInviato(messaggio)}}
                                     </div>
-                                    <div v-else>
-                                        
-                                    </div>
+                                
                                     <ul class="windImpostazioni" :class="{'visible': isVisible(messaggio)}">
                                         <li>Message info</li>
                                         <li @click="eliminateMessage(index)">Delete message</li>

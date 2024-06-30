@@ -187,6 +187,12 @@ createApp({
                   status: 'received'
               }
           ],
+      },
+      {
+          name: 'Gaia',
+          avatar: './img/avatar_8.png',
+          visible: true,
+          messages: [],
       }
     ]);
     // contatti filtrati da input utente
