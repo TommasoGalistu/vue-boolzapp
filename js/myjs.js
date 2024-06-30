@@ -317,3 +317,11 @@ createApp({
     };
   }
 }).mount('#app');
+
+// problemi da risolvere
+
+// se filtro e clicco sulla chat filtrata mi 
+// trova la chat che precedentemente stava in quella posizione
+
+// se elimino tutti i messaggio e vado a cliccare un'altra
+// chat mi da errore
