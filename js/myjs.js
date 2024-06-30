@@ -199,8 +199,6 @@ createApp({
     const numAmico = ref(0);
     // numero che identifica la posizione del messaggio in chat
     const selectedMessage = ref(null);
-    // classe da aggiornare
-    const classeMenu = ref('');
     // classe per visualizzazione chat attiva
     const active = ref('');
     // messaggio nuovo da inviare da input
@@ -218,6 +216,11 @@ createApp({
             status: 'received'
         });
     
+    
+    
+    
+        
+        // inizio funzioni
     // inserimento dinamico della chat
     const messaggioInviato = (messaggio) => {
         return messaggio.message
@@ -268,13 +271,19 @@ createApp({
     };
     
     const eliminateMessage = (posMessaggio) => {
-    contacts.value[numAmico.value].messages.splice(posMessaggio, 1)
+        contacts.value[numAmico.value].messages.splice(posMessaggio, 1)
     }
     // orario dell'ultimo messaggio inviato o ricevuto
     const ultimoMessaggio = (index) => {
         const messaggi = contacts.value[index].messages;
         const messaggio = messaggi[messaggi.length - 1];
         return messaggio.date.slice(11, 16); // Estrai la sottostringa dell'orario
+    };
+    const orarioMessaggio = (index) => {
+        const oraioInvio = contacts.value[index].messages[index].date.slice(11, 16);
+        return oraioInvio
+        // const messaggio = messaggi[messaggi.length - 1];
+        // return messaggio.date.slice(11, 16); // Estrai la sottostringa dell'orario
     };
     
   onMounted(() => {
@@ -295,10 +304,10 @@ createApp({
       contatti,
       aperturaMenu,
       selectedMessage,
-      classeMenu,
       isVisible,
       eliminateMessage,
-      ultimoMessaggio
+      ultimoMessaggio,
+      orarioMessaggio
     };
   }
 }).mount('#app');

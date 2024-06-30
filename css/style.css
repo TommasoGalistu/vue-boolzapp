@@ -182,7 +182,7 @@
 }
 
 
-.contMessaggi div{
+.contMessaggi .messaggio{
     padding: 0.5rem;
     border-radius: 10px;
     margin: 0.5rem;
