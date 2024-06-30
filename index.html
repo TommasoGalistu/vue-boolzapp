@@ -97,7 +97,7 @@
                                     {{messaggioInviato(messaggio)}}
                                     <ul class="windImpostazioni" :class="{'visible': isVisible(messaggio)}">
                                         <li>Message info</li>
-                                        <li>Delete message</li>
+                                        <li @click="eliminateMessage(index, messaggio)">Delete message</li>
                                     </ul>
                                     <span class="orarioInvio">12:00</span>
                                     <i class="fa-solid fa-angle-down" @click="aperturaMenu(messaggio)"></i>

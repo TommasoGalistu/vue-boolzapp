@@ -266,6 +266,10 @@ createApp({
         return selectedMessage.value === messaggio;
       };
     
+      const eliminateMessage = (posMessaggio, messaggio) => {
+        contacts.value[numAmico.value].messages.splice(posMessaggio, 1)
+        console.log(contacts.value[numAmico.value].messages[posMessaggio])
+      }
     
   onMounted(() => {
 });
@@ -286,7 +290,8 @@ createApp({
       aperturaMenu,
       selectedMessage,
       classeMenu,
-      isVisible
+      isVisible,
+      eliminateMessage
     };
   }
 }).mount('#app');
