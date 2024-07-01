@@ -251,7 +251,6 @@ createApp({
         }, 2000)
     };
     const ricercaPersone = () =>{
-        
         return filtraAmici
     }
     // ricerca persone nella barra input
@@ -274,7 +273,10 @@ createApp({
     };
     
     const eliminateMessage = (posMessaggio) => {
-        contacts.value[numAmico.value].messages.splice(posMessaggio, 1)
+        if(contacts.value[numAmico.value].messages.length > 0){
+            contacts.value[numAmico.value].messages.splice(posMessaggio, 1)
+        }
+        
     }
     // orario dell'ultimo messaggio inviato o ricevuto
     const ultimoMessaggio = (index) => {
@@ -320,8 +322,7 @@ createApp({
 
 // problemi da risolvere
 
-// se filtro e clicco sulla chat filtrata mi 
-// trova la chat che precedentemente stava in quella posizione
+
 
 // se elimino tutti i messaggio e vado a cliccare un'altra
 // chat mi da errore
