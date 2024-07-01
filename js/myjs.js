@@ -318,6 +318,18 @@ createApp({
             const oraioInvio = contacts.value[numAmico.value].messages[index].date.slice(11, 16);
             
             return oraioInvio
+        };
+        const statoAmicoChat = (posizione) =>{
+            const ultimoAccesso = contacts.value[posizione].messages;
+            
+            for (let i = ultimoAccesso.length - 1; i >= 0 ; i--) {
+                if(ultimoAccesso[i].status === 'received'){
+                    return `Ultimo accesso oggi alle ${ultimoAccesso[i].date.slice(11, 16)}`
+                }
+                
+            }
+            console.log(ultimoAccesso)
+            
         }
         
 
@@ -347,7 +359,8 @@ createApp({
             orarioMessaggio,
             ricercaPersone,
             indiceFiltrato,
-            orario
+            orario,
+            statoAmicoChat
         };
     }
 }).mount('#app');
