@@ -206,6 +206,8 @@ createApp({
         const indiceFiltrato = ref(null);
         // numero che identifica la posizione del messaggio in chat
         const selectedMessage = ref(null);
+        // costante per sapere se il menu della chat è stato cliccato
+        const clickedMenu = ref(null);
         // classe per visualizzazione chat attiva
         // const active = ref('');
         // messaggio nuovo da inviare da input
@@ -258,7 +260,7 @@ createApp({
 
         );
 
-        const rispostaAttiva = ref(false);
+        const UltimoAccessoOrario =ref('')
 
 
 
@@ -277,7 +279,8 @@ createApp({
             const indiceOriginale = contacts.value.findIndex(persona => persona.name === filtraAmici.value[posizione].name);
             numAmico.value = indiceOriginale;
             indiceFiltrato.value = posizione;
-
+            // chiudi le possibili finestre aperte
+            clickedMenu.value = false;
         };
 
         // invio messaggio e risposta automatica dopo 2 secondi
@@ -290,11 +293,8 @@ createApp({
                 setTimeout(() => {
                     contacts.value[numAmico.value].messages.push(risposta.value[numRandom]);
                     
-                }, 5000)
-
+                }, 3000)
             }
-            
-
         };
 
         
@@ -328,8 +328,8 @@ createApp({
 
         }
         // orario dell'ultimo messaggio inviato o ricevuto
-        const ultimoMessaggio = (index) => {
-            const messaggi = contacts.value[index].messages;
+        const ultimoMessaggio = (amico) => {
+            const messaggi = amico.messages;
             const messaggio = messaggi[messaggi.length - 1];
             return messaggio.date.slice(11, 16);
         };
@@ -344,14 +344,29 @@ createApp({
             for (let i = ultimoAccesso.length - 1; i >= 0; i--) {
                 
                 if (ultimoAccesso[i].status === 'received') {
-                    const UltimoAccessoOrario = `Ultimo accesso il ${ultimoAccesso[i].date.slice(0, 10)} alle ${ultimoAccesso[i].date.slice(11, 16)}`
+                    UltimoAccessoOrario.value = `Ultimo accesso il ${ultimoAccesso[i].date.slice(0, 10)} alle ${ultimoAccesso[i].date.slice(11, 16)}`
                     return UltimoAccessoOrario
                 }
             }
-            console.log(ultimoAccesso)
         }
-
-        
+        // funzione per aprire il menu eliminazione chat
+        const menuChat = () =>{
+            if(!clickedMenu.value){
+                clickedMenu.value = true;
+            }else{
+                clickedMenu.value = false;
+            }
+            
+        }
+        // funzione per aprire e chiudere menu con classe
+        const isClicked = () =>{
+            return clickedMenu.value
+        }
+        // funzione click per eliminare la chat dai dati
+        const eliminateChat = (posizione) =>{
+            contacts.value.splice(posizione, 1)
+            console.log('elimnate')
+        }
 
 
         onMounted(() => {
@@ -382,6 +397,11 @@ createApp({
             indiceFiltrato,
             orario,
             statoAmicoChat,
+            UltimoAccessoOrario,
+            menuChat,
+            eliminateChat,
+            clickedMenu,
+            isClicked
             
         };
     }

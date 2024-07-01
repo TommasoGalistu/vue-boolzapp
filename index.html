@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="navMenu persona-orario">
-                                <span v-if="amico.messages.length > 0" class="testoPocoRisalto">{{ultimoMessaggio(index)}}</span>
+                                <span v-if="amico.messages.length > 0" class="testoPocoRisalto">{{ultimoMessaggio(amico)}}</span>
                                 <span v-else class="testoPocoRisalto"></span>
                             </div>
                         </div>
@@ -88,7 +88,10 @@
                         <div class="navMenu">
                             <i class="fa-solid fa-circle-notch"></i>
                             <i class="fa-solid fa-message"></i>
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <i @click="menuChat()" class="fa-solid fa-ellipsis-vertical"></i>
+                            <ul class="windImpostazioni" :class="{'visible': isClicked()}">
+                                <li @click="eliminateChat">Delete chat</li>
+                            </ul>
                         </div>
                     </div>
                     <div class="sfondo">

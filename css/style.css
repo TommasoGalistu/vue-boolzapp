@@ -88,13 +88,16 @@
 
 .navMenu{
     margin-right: 0.5rem;
+    position: relative;
 }
 .navMenu .fa-solid{
     padding: 0.5rem;
     color: #b1b1b1;
     border-radius: 10px;
 }
-
+.navMenu .windImpostazioni{
+    width: 10rem;
+}
 .notifiche{
     height: 4rem;
     width: 100%;
