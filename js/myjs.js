@@ -264,7 +264,7 @@ createApp({
 
         );
 
-        const UltimoAccessoOrario =ref('');
+        const UltimoAccessoOrario = ref('');
         const cambiaNotifiche = ref(true);
 
 
@@ -290,16 +290,23 @@ createApp({
 
         // invio messaggio e risposta automatica dopo 2 secondi
         const invioMessaggio = () => {
-
+            // setTimeout(() =>{
+            //     return UltimoAccessoOrario.value = 'Online';
+            // }, 1000)
+            // setTimeout(() =>{
+            //     return UltimoAccessoOrario.value = 'Sta scrivento...';
+                
+            // }, 2000)
             if (messaggioNuovo.value.message.trim().length > 0) {
                 contacts.value[numAmico.value].messages.push({ ...messaggioNuovo.value });
                 messaggioNuovo.value.message = ''
                 const numRandom = Math.floor(Math.random() * risposta.value.length)
                 setTimeout(() => {
                     contacts.value[numAmico.value].messages.push(risposta.value[numRandom]);
-                    
-                }, 3000)
+                    UltimoAccessoOrario.value = 'Online';
+                }, 8000)
             }
+            
         };
 
         
@@ -398,7 +405,7 @@ createApp({
         // funzione click per eliminare la chat dai dati
         const eliminateChat = (posizione) =>{
             contacts.value.splice(posizione, 1)
-            console.log('elimnate')
+            console.log(posizione)
         }
 
         const notificaStatus = () =>{
@@ -416,7 +423,7 @@ createApp({
             },1000 * 60)
         }
         onMounted(() => {
-            contatti.value = filtraAmici
+            contatti.value = filtraAmici;
 
         });
 
@@ -461,5 +468,5 @@ createApp({
 
 
 
-// se elimino tutti i messaggio e vado a cliccare un'altra
-// chat mi da errore
+//elimina la chat che si trova nella posizione 1 all'inizio dei 
+// dati

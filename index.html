@@ -109,7 +109,7 @@
                             <i class="fa-solid fa-message"></i>
                             <i @click="menuChat()" class="fa-solid fa-ellipsis-vertical"></i>
                             <ul class="windImpostazioni" :class="{'visible': isClicked()}">
-                                <li @click="eliminateChat">Delete chat</li>
+                                <li @click="eliminateChat(index)">Delete chat</li>
                             </ul>
                         </div>
                     </div>
