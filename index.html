@@ -110,7 +110,8 @@
                     <div class="chattaContainer">
                         <i class="fa-regular fa-face-smile"></i>
                         <input type="text" placeholder="Scrivi un messaggio" v-model="messaggioNuovo.message" @keyup.enter="invioMessaggio">
-                        <i class="fa-solid fa-microphone"></i>
+                        <i v-if="!messaggioNuovo.message" class="fa-solid fa-microphone"></i>
+                        <i v-else @click="invioMessaggio" class="fa-solid fa-paper-plane"></i>
                     </div>
                 </div>
             </div>

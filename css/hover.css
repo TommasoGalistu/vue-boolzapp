@@ -19,3 +19,7 @@
     background-color: rgb(236, 236, 236);
     cursor: pointer;
 }
+
+.chattaContainer i:hover{
+    cursor: pointer;
+}
