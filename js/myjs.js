@@ -216,47 +216,47 @@ createApp({
         // const active = ref('');
         // messaggio nuovo da inviare da input
         var DateTime = luxon.DateTime;
-        const orario = DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss').toString();
+        const orario = DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss');
         const messaggioNuovo = ref(
             {
-                date: orario,
+                date: orario.toString(),
                 message: '',
                 status: 'sent'
             });
         // format risposta automatica
         const risposta = ref([
             {
-                date: orario,
+                date: orario.toString(),
                 message: 'OK!!',
                 status: 'received'
             },
             {
-                date: orario,
+                date: orario.toString(),
                 message: 'Non mi scrivere mai più!!',
                 status: 'received'
             },
             {
-                date: orario,
+                date: orario.toString(),
                 message: 'Non mi interessa..',
                 status: 'received'
             },
             {
-                date: orario,
+                date: orario.toString(),
                 message: 'Ti denuncio',
                 status: 'received'
             },
             {
-                date: orario,
+                date: orario.toString(),
                 message: 'Non stooo...',
                 status: 'received'
             },
             {
-                date: orario,
+                date: orario.toString(),
                 message: 'Carmineeeee',
                 status: 'received'
             },
             {
-                date: orario,
+                date: orario.toString(),
                 message: 'Marooonn',
                 status: 'received'
             },
@@ -308,9 +308,37 @@ createApp({
         }
         // ricerca persone nella barra input
         const filtraAmici = computed(() => {
-            return contacts.value.filter(persona => {
-                return persona.name.toLowerCase().includes(inputForFilter.value.toLowerCase());
+            const filteredContacts = contacts.value.filter(persona => 
+                persona.name.toLowerCase().includes(inputForFilter.value.toLowerCase())
+            );
+        
+            const sortedContacts = filteredContacts.map(persona => {
+                const latestMessageDate = persona.messages.length > 0 
+                    ? DateTime.fromFormat(persona.messages[persona.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss')
+                    : null;
+            
+                return {
+                    ...persona,
+                    latestMessageDate
+                };
             });
+        
+            sortedContacts.sort((a, b) => {
+                if (a.latestMessageDate && b.latestMessageDate) {
+                    return  b.latestMessageDate - a.latestMessageDate;
+                }
+                if (a.latestMessageDate){
+                    return -1;
+                } 
+                    
+                if (b.latestMessageDate){
+                    return 1;
+                } 
+                
+            });
+            console.log(orario)
+            return sortedContacts;
+        
         });
 
         const aperturaMenu = (messaggio) => {
@@ -380,6 +408,13 @@ createApp({
                 cambiaNotifiche.value = true;
             }
         }
+
+        const aggiornaOra = () =>{
+            setInterval(() =>{
+                DateTime = luxon.DateTime;
+                console.log('orario aggiornato', DateTime)
+            },1000 * 60)
+        }
         onMounted(() => {
             contatti.value = filtraAmici
 
@@ -415,7 +450,8 @@ createApp({
             isClicked,
             datiPersonali,
             cambiaNotifiche,
-            notificaStatus
+            notificaStatus,
+            aggiornaOra
             
         };
     }
