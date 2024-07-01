@@ -48,12 +48,12 @@
                     <div class="notifiche"></div>
                     <!-- input di ricerca persone -->
                     <div class="contInput">
-                        <input type="text" placeholder="Cerca o inizia una nuova chat" @keyup="filtraAmici" v-model="inputForFilter">
+                        <input type="text" placeholder="Cerca o inizia una nuova chat" @keyup="ricercaPersone" v-model="inputForFilter">
                     </div>
 
                     <!-- persone in chat elenco -->
                     <div class="containerAmici">
-                        <div class="person" :class="numAmico === index ? 'active': ''" v-for="(amico, index) in contatti" :key="index" @click="selezionaPersona(index)">
+                        <div class="person" :class="numAmico === index ? 'active': ''" v-for="(amico, index) in filtraAmici" :key="index" @click="selezionaPersona(index)">
                             <div class="icon">
                                 <div class="contFoto align-self"></div>
                                 <div class="testo persona-orario">
