@@ -16,7 +16,7 @@
     <!-- icon awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="img/whatsapp.svg">
+    <link rel="icon" type="image/x-icon" href="img/logoEsfondo/whatsapp.svg">
     <!-- link variable -->
      <link rel="stylesheet" href="css/variable.css">
      <!-- link hover -->
@@ -36,9 +36,9 @@
                     <div class="person pricipal">
                         <div class="icon">
                             <div class="contFoto">
-
+                                <img :src="datiPersonali.avatar" alt="">
                             </div>
-                            <span>Nome</span>
+                            <span>{{datiPersonali.name}}</span>
                         </div>
                         <div class="navMenu">
                             <i class="fa-solid fa-circle-notch"></i>
@@ -57,7 +57,9 @@
                     <div class="containerAmici">
                         <div class="person" :class="indiceFiltrato === index ? 'active' : ''" v-for="(amico, index) in filtraAmici" :key="index" @click.stop="selezionaPersona(index)">
                             <div class="icon">
-                                <div class="contFoto align-self"></div>
+                                <div class="contFoto align-self">
+                                    <img :src="amico.avatar" alt="">
+                                </div>
                                 <div class="testo persona-orario">
                                     <span class="">{{amico.name}}</span>
                                     <p v-if="amico.messages.length > 0" class="testoPocoRisalto">{{amico.messages[amico.messages.length - 1].message}}</p>
@@ -77,7 +79,7 @@
                     <div class="person pricipal">
                         <div class="icon">
                             <div class="contFoto">
-
+                                <img :src="contacts[numAmico].avatar" alt="">
                             </div>
                             <div class="testo">
                                 <span>{{contacts[numAmico].name}}</span>

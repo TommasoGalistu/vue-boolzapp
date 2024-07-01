@@ -83,7 +83,10 @@
     width: 2.5rem;
     border-radius: 50%;
     margin: 0 0.5rem;
-    background-color: black;
+}
+
+.contFoto img{
+    height: 100%;
 }
 
 .navMenu{
@@ -128,7 +131,7 @@
 
 .sfondo{
     height: calc(100% - var(--altezzaPersona) * 2);
-    background-image: url('../img/chatSfondo.jpg');
+    background-image: url('../img/logoEsfondo/chatSfondo.jpg');
     
 }
 

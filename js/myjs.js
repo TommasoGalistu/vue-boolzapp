@@ -1,13 +1,17 @@
-const { createApp, ref, onMounted, computed } = Vue;
+const { createApp, ref, onMounted, computed, nextTick } = Vue;
 
 createApp({
     setup() {
-
+        const datiPersonali = ref({
+            name: 'Tommaso Galistu',
+            avatar: './img/img12.png',
+            visible: true,
+        })
         // elenco dati persone
         const contacts = ref([
             {
                 name: 'Michele',
-                avatar: './img/avatar_1.png',
+                avatar: './img/img1.png',
                 visible: true,
                 messages: [
                     {
@@ -29,7 +33,7 @@ createApp({
             },
             {
                 name: 'Fabio',
-                avatar: './img/avatar_2.png',
+                avatar: './img/img2.png',
                 visible: true,
                 messages: [
                     {
@@ -51,7 +55,7 @@ createApp({
             },
             {
                 name: 'Samuele',
-                avatar: './img/avatar_3.png',
+                avatar: './img/img3.png',
                 visible: true,
                 messages: [
                     {
@@ -73,7 +77,7 @@ createApp({
             },
             {
                 name: 'Alessandro B.',
-                avatar: './img/avatar_4.png',
+                avatar: './img/img4.png',
                 visible: true,
                 messages: [
                     {
@@ -90,7 +94,7 @@ createApp({
             },
             {
                 name: 'Alessandro L.',
-                avatar: './img/avatar_5.png',
+                avatar: './img/img5.png',
                 visible: true,
                 messages: [
                     {
@@ -107,7 +111,7 @@ createApp({
             },
             {
                 name: 'Claudia',
-                avatar: './img/avatar_6.png',
+                avatar: './img/img6.png',
                 visible: true,
                 messages: [
                     {
@@ -129,7 +133,7 @@ createApp({
             },
             {
                 name: 'Federico',
-                avatar: './img/avatar_7.png',
+                avatar: './img/img7.png',
                 visible: true,
                 messages: [
                     {
@@ -146,7 +150,7 @@ createApp({
             },
             {
                 name: 'Davide',
-                avatar: './img/avatar_8.png',
+                avatar: './img/img8.png',
                 visible: true,
                 messages: [
                     {
@@ -168,7 +172,7 @@ createApp({
             },
             {
                 name: 'Barbara',
-                avatar: './img/avatar_8.png',
+                avatar: './img/img9.png',
                 visible: true,
                 messages: [
                     {
@@ -190,7 +194,7 @@ createApp({
             },
             {
                 name: 'Gaia',
-                avatar: './img/avatar_8.png',
+                avatar: './img/img10.png',
                 visible: true,
                 messages: [],
             }
@@ -368,7 +372,16 @@ createApp({
             console.log('elimnate')
         }
 
-
+        async function increment() {
+            contacts.value
+          
+            // DOM not yet updated
+            console.log(contacts.value) // 0
+          
+            await nextTick()
+            // DOM is now updated
+            console.log(contacts.value) // 1
+          }
         onMounted(() => {
             contatti.value = filtraAmici
 
@@ -401,7 +414,9 @@ createApp({
             menuChat,
             eliminateChat,
             clickedMenu,
-            isClicked
+            isClicked,
+            increment,
+            datiPersonali
             
         };
     }
