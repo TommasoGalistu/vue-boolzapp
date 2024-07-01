@@ -282,14 +282,12 @@ createApp({
     const ultimoMessaggio = (index) => {
         const messaggi = contacts.value[index].messages;
         const messaggio = messaggi[messaggi.length - 1];
-        return messaggio.date.slice(11, 16); // Estrai la sottostringa dell'orario
+        return messaggio.date.slice(11, 16); 
     };
     const orarioMessaggio = (index) => {
         const oraioInvio = contacts.value[index].messages[index].date.slice(11, 16);
         return oraioInvio
-        // const messaggio = messaggi[messaggi.length - 1];
-        // return messaggio.date.slice(11, 16); // Estrai la sottostringa dell'orario
-    };
+    }  
     
   onMounted(() => {
     contatti.value = filtraAmici
