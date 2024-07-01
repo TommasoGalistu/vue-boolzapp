@@ -53,26 +53,22 @@
 
                     <!-- persone in chat elenco -->
                     <div class="containerAmici">
-                        <div class="person" :class="numAmico === index ? 'active': ''" v-for="(amico, index) in filtraAmici" :key="index" @click="selezionaPersona(index)">
+                        <div class="person" :class="indiceFiltrato === index ? 'active' : ''" v-for="(amico, index) in filtraAmici" :key="index" @click="selezionaPersona(index)">
                             <div class="icon">
                                 <div class="contFoto align-self"></div>
                                 <div class="testo persona-orario">
                                     <span class="">{{amico.name}}</span>
                                     <p v-if="amico.messages.length > 0" class="testoPocoRisalto">{{amico.messages[amico.messages.length - 1].message}}</p>
                                     <p v-else class="testoPocoRisalto"></p>
-
                                 </div>
                             </div>
                             <div class="navMenu persona-orario">
-                                
                                 <span v-if="amico.messages.length > 0" class="testoPocoRisalto">{{ultimoMessaggio(index)}}</span>
                                 <span v-else class="testoPocoRisalto"></span>
                             </div>
                         </div>
-                        
-                        
-                        
                     </div>
+                    
                 </nav>
                 <!-- parte di destra con la chat aperta -->
                 <div class="containerChat">

@@ -203,6 +203,7 @@ createApp({
     const contatti = ref('');
     // numero che va ad aggiornare le chat al click
     const numAmico = ref(0);
+    const indiceFiltrato = ref(null);
     // numero che identifica la posizione del messaggio in chat
     const selectedMessage = ref(null);
     // classe per visualizzazione chat attiva
@@ -234,9 +235,11 @@ createApp({
     };
 
     // click della persona e visualizzazione della chat
-    const selezionaPersona = (posizione) =>{
-        numAmico.value = posizione;
-        
+    const selezionaPersona = (posizione) => {
+        // Trova l'indice originale della persona selezionata nella lista completa
+        const indiceOriginale = contacts.value.findIndex(persona => persona.name === filtraAmici.value[posizione].name);
+        numAmico.value = indiceOriginale;
+        indiceFiltrato.value = posizione;
     };
 
     // invio messaggio e risposta automatica dopo 2 secondi
@@ -248,17 +251,14 @@ createApp({
         }, 2000)
     };
     const ricercaPersone = () =>{
+        
         return filtraAmici
     }
     // ricerca persone nella barra input
-    const filtraAmici = computed(() =>{
-        if(inputForFilter.value.length > 0){
-            return contacts.value.filter(persona =>{
-                return persona.name.toLowerCase().includes(inputForFilter.value.toLowerCase());   
-            })
-        }else{
-            return contacts.value
-        }
+    const filtraAmici = computed(() => {
+        return contacts.value.filter(persona => {
+            return persona.name.toLowerCase().includes(inputForFilter.value.toLowerCase());
+        });
     });
 
     const aperturaMenu = (messaggio) => {
@@ -312,7 +312,8 @@ createApp({
       eliminateMessage,
       ultimoMessaggio,
       orarioMessaggio,
-      ricercaPersone
+      ricercaPersone,
+      indiceFiltrato
     };
   }
 }).mount('#app');
