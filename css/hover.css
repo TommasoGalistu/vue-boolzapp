@@ -23,3 +23,10 @@
 .chattaContainer i:hover{
     cursor: pointer;
 }
+
+.notifiche i:hover{
+    cursor: pointer;
+}
+.notifiche p:hover{
+    cursor: pointer;
+}

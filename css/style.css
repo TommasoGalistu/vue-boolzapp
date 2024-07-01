@@ -105,8 +105,26 @@
     height: 4rem;
     width: 100%;
     background-color: #8edafc;
+    display: flex;
 }
 
+.notifiche .flexati{
+    display: flex;
+    align-items: center;
+}
+
+.notifiche i {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background-color: #e4f7ff;
+    border-radius: 50%;
+}
+i.fa-microphone{
+    border-radius: 80%;
+}
+.notifiche p{
+    text-decoration: underline;
+}
 .contInput{
     background-color: #f9f9f9;
     height: 2rem;

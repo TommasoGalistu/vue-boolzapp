@@ -264,7 +264,8 @@ createApp({
 
         );
 
-        const UltimoAccessoOrario =ref('')
+        const UltimoAccessoOrario =ref('');
+        const cambiaNotifiche = ref(true);
 
 
 
@@ -372,16 +373,13 @@ createApp({
             console.log('elimnate')
         }
 
-        async function increment() {
-            contacts.value
-          
-            // DOM not yet updated
-            console.log(contacts.value) // 0
-          
-            await nextTick()
-            // DOM is now updated
-            console.log(contacts.value) // 1
-          }
+        const notificaStatus = () =>{
+            if(cambiaNotifiche.value){
+                cambiaNotifiche.value = false;
+            }else{
+                cambiaNotifiche.value = true;
+            }
+        }
         onMounted(() => {
             contatti.value = filtraAmici
 
@@ -415,8 +413,9 @@ createApp({
             eliminateChat,
             clickedMenu,
             isClicked,
-            increment,
-            datiPersonali
+            datiPersonali,
+            cambiaNotifiche,
+            notificaStatus
             
         };
     }
