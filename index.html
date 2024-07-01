@@ -53,7 +53,7 @@
 
                     <!-- persone in chat elenco -->
                     <div class="containerAmici">
-                        <div class="person" :class="indiceFiltrato === index ? 'active' : ''" v-for="(amico, index) in filtraAmici" :key="index" @click="selezionaPersona(index)">
+                        <div class="person" :class="indiceFiltrato === index ? 'active' : ''" v-for="(amico, index) in filtraAmici" :key="index" @click.stop="selezionaPersona(index)">
                             <div class="icon">
                                 <div class="contFoto align-self"></div>
                                 <div class="testo persona-orario">
@@ -101,7 +101,7 @@
                                         <li @click.stop="eliminateMessage(index)">Delete message</li>
                                     </ul>
                                     <span class="orarioInvio">{{orarioMessaggio(index)}}</span>
-                                    <i class="fa-solid fa-angle-down" @click="aperturaMenu(messaggio)"></i>
+                                    <i class="fa-solid fa-angle-down" @click.stop="aperturaMenu(messaggio)"></i>
                                     <span class="windImpostazioni"></span>
                                 </div>
                                 

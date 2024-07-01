@@ -196,7 +196,7 @@ createApp({
       }
     ]);
     // contatti filtrati da input utente
-    const contactsFilter = ref([]);
+    // const contactsFilter = ref([]);
     // input utente per filtrare persone
     const inputForFilter = ref('');
     // variabile che decide quali amici, filtrati o no, da aggiungere alla lista
@@ -207,7 +207,7 @@ createApp({
     // numero che identifica la posizione del messaggio in chat
     const selectedMessage = ref(null);
     // classe per visualizzazione chat attiva
-    const active = ref('');
+    // const active = ref('');
     // messaggio nuovo da inviare da input
     const messaggioNuovo = ref(
     {
@@ -240,6 +240,7 @@ createApp({
         const indiceOriginale = contacts.value.findIndex(persona => persona.name === filtraAmici.value[posizione].name);
         numAmico.value = indiceOriginale;
         indiceFiltrato.value = posizione;
+        
     };
 
     // invio messaggio e risposta automatica dopo 2 secondi
@@ -249,6 +250,7 @@ createApp({
         setTimeout(() =>{
             contacts.value[numAmico.value].messages.push({...risposta.value});
         }, 2000)
+        
     };
     const ricercaPersone = () =>{
         return filtraAmici
@@ -266,10 +268,11 @@ createApp({
         } else {
           selectedMessage.value = messaggio; // Altrimenti apri il menu per il messaggio cliccato
         }
+        
       };
   
     const isVisible = (messaggio) => {
-    return selectedMessage.value === messaggio;
+        return selectedMessage.value === messaggio;
     };
     
     const eliminateMessage = (posMessaggio) => {
@@ -285,7 +288,8 @@ createApp({
         return messaggio.date.slice(11, 16); 
     };
     const orarioMessaggio = (index) => {
-        const oraioInvio = contacts.value[index].messages[index].date.slice(11, 16);
+        const oraioInvio = contacts.value[numAmico.value].messages[index].date.slice(11, 16);
+        
         return oraioInvio
     }  
     
@@ -298,12 +302,12 @@ createApp({
       messaggioInviato,
       numAmico,
       selezionaPersona,
-      active,
+    //   active,
       messaggioNuovo,
       invioMessaggio,
       risposta,
       filtraAmici,
-      contactsFilter,
+    //   contactsFilter,
       inputForFilter,
       contatti,
       aperturaMenu,
