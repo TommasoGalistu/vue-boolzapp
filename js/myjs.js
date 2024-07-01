@@ -216,12 +216,30 @@ createApp({
                 status: 'sent'
             });
         // format risposta automatica
-        const risposta = ref(
+        const risposta = ref([
             {
                 date: '10/01/2020 15:30:55',
                 message: 'OK!!',
                 status: 'received'
-            });
+            },
+            {
+                date: '10/01/2020 15:30:55',
+                message: 'Non mi scrivere mai più!!',
+                status: 'received'
+            },
+            {
+                date: '10/01/2020 15:30:55',
+                message: 'Non mi interessa..',
+                status: 'received'
+            },
+            {
+                date: '10/01/2020 15:30:55',
+                message: 'Ti denuncio',
+                status: 'received'
+            },
+        ]
+            
+        );
 
 
 
@@ -249,8 +267,9 @@ createApp({
             if (messaggioNuovo.value.message.trim().length > 0) {
                 contacts.value[numAmico.value].messages.push({ ...messaggioNuovo.value });
                 messaggioNuovo.value.message = ''
+                const numRandom = Math.floor(Math.random() * risposta.value.length)
                 setTimeout(() => {
-                    contacts.value[numAmico.value].messages.push({ ...risposta.value });
+                    contacts.value[numAmico.value].messages.push( risposta.value[numRandom] );
                 }, 2000)
 
             }
