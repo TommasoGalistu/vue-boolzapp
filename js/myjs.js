@@ -209,37 +209,40 @@ createApp({
         // classe per visualizzazione chat attiva
         // const active = ref('');
         // messaggio nuovo da inviare da input
+        var DateTime = luxon.DateTime;
+        const orario = DateTime.now().toString();
         const messaggioNuovo = ref(
             {
-                date: '10/01/2020 15:30:55',
+                date: orario,
                 message: '',
                 status: 'sent'
             });
         // format risposta automatica
         const risposta = ref([
             {
-                date: '10/01/2020 15:30:55',
+                date: orario,
                 message: 'OK!!',
                 status: 'received'
             },
             {
-                date: '10/01/2020 15:30:55',
+                date: orario,
                 message: 'Non mi scrivere mai più!!',
                 status: 'received'
             },
             {
-                date: '10/01/2020 15:30:55',
+                date: orario,
                 message: 'Non mi interessa..',
                 status: 'received'
             },
             {
-                date: '10/01/2020 15:30:55',
+                date: orario,
                 message: 'Ti denuncio',
                 status: 'received'
             },
         ]
             
         );
+        
 
 
 
@@ -276,6 +279,7 @@ createApp({
 
         };
         const ricercaPersone = () => {
+            
             return filtraAmici
         }
         // ricerca persone nella barra input
@@ -312,12 +316,14 @@ createApp({
         };
         const orarioMessaggio = (index) => {
             const oraioInvio = contacts.value[numAmico.value].messages[index].date.slice(11, 16);
-
+            
             return oraioInvio
         }
+        
 
         onMounted(() => {
-            contatti.value = filtraAmici
+            contatti.value = filtraAmici 
+            
         });
 
         return {
@@ -340,7 +346,8 @@ createApp({
             ultimoMessaggio,
             orarioMessaggio,
             ricercaPersone,
-            indiceFiltrato
+            indiceFiltrato,
+            orario
         };
     }
 }).mount('#app');
