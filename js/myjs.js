@@ -210,7 +210,7 @@ createApp({
         // const active = ref('');
         // messaggio nuovo da inviare da input
         var DateTime = luxon.DateTime;
-        const orario = DateTime.now().toString();
+        const orario = DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss').toString();
         const messaggioNuovo = ref(
             {
                 date: orario,
@@ -239,10 +239,26 @@ createApp({
                 message: 'Ti denuncio',
                 status: 'received'
             },
+            {
+                date: orario,
+                message: 'Non stooo...',
+                status: 'received'
+            },
+            {
+                date: orario,
+                message: 'Carmineeeee',
+                status: 'received'
+            },
+            {
+                date: orario,
+                message: 'Marooonn',
+                status: 'received'
+            },
         ]
-            
+
         );
-        
+
+        const rispostaAttiva = ref(false);
 
 
 
@@ -266,20 +282,23 @@ createApp({
 
         // invio messaggio e risposta automatica dopo 2 secondi
         const invioMessaggio = () => {
-            
+
             if (messaggioNuovo.value.message.trim().length > 0) {
                 contacts.value[numAmico.value].messages.push({ ...messaggioNuovo.value });
                 messaggioNuovo.value.message = ''
                 const numRandom = Math.floor(Math.random() * risposta.value.length)
                 setTimeout(() => {
-                    contacts.value[numAmico.value].messages.push( risposta.value[numRandom] );
-                }, 2000)
+                    contacts.value[numAmico.value].messages.push(risposta.value[numRandom]);
+                    
+                }, 5000)
 
             }
+            
 
         };
+
+        
         const ricercaPersone = () => {
-            
             return filtraAmici
         }
         // ricerca persone nella barra input
@@ -316,26 +335,28 @@ createApp({
         };
         const orarioMessaggio = (index) => {
             const oraioInvio = contacts.value[numAmico.value].messages[index].date.slice(11, 16);
-            
+
             return oraioInvio
         };
-        const statoAmicoChat = (posizione) =>{
+        const statoAmicoChat = (posizione) => {
             const ultimoAccesso = contacts.value[posizione].messages;
             
-            for (let i = ultimoAccesso.length - 1; i >= 0 ; i--) {
-                if(ultimoAccesso[i].status === 'received'){
-                    return `Ultimo accesso oggi alle ${ultimoAccesso[i].date.slice(11, 16)}`
-                }
+            for (let i = ultimoAccesso.length - 1; i >= 0; i--) {
                 
+                if (ultimoAccesso[i].status === 'received') {
+                    const UltimoAccessoOrario = `Ultimo accesso il ${ultimoAccesso[i].date.slice(0, 10)} alle ${ultimoAccesso[i].date.slice(11, 16)}`
+                    return UltimoAccessoOrario
+                }
             }
             console.log(ultimoAccesso)
-            
         }
+
         
 
+
         onMounted(() => {
-            contatti.value = filtraAmici 
-            
+            contatti.value = filtraAmici
+
         });
 
         return {
@@ -360,7 +381,8 @@ createApp({
             ricercaPersone,
             indiceFiltrato,
             orario,
-            statoAmicoChat
+            statoAmicoChat,
+            
         };
     }
 }).mount('#app');
