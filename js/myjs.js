@@ -291,19 +291,31 @@ createApp({
 
         // invio messaggio e risposta automatica dopo 2 secondi
         const invioMessaggio = () => {
+            // impostazione timer per far apparire stato 
+            // diventa online
             setTimeout(() =>{
                 isSent.value = false;
             }, 2000)
+            // sta scrivendo
             setTimeout(() =>{
                 isOnline.value = false;
             }, 5000)
+            // ha finito di scrivere ed è online
+            setTimeout(() =>{
+                isOnline.value = true;
+            }, 13000)
+            setTimeout(() =>{
+                isOnline.value = false;
+                isSent.value = true;
+            }, 17000)
+            
             if (messaggioNuovo.value.message.trim().length > 0) {
                 contacts.value[numAmico.value].messages.push({ ...messaggioNuovo.value });
                 messaggioNuovo.value.message = ''
                 const numRandom = Math.floor(Math.random() * risposta.value.length)
                 setTimeout(() => {
                     contacts.value[numAmico.value].messages.push(risposta.value[numRandom]);
-                    isSent.value = true;
+                    
                 }, 15000)
             }
             
