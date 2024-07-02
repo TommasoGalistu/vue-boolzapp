@@ -100,7 +100,9 @@
                             </div>
                             <div class="testo">
                                 <span>{{contacts[numAmico].name}}</span>
-                                <p class="testoPocoRisalto">{{statoAmicoChat(numAmico)}}</p>
+                                <p v-if="isSent" class="testoPocoRisalto">{{statoAmicoChat(numAmico)}}</p>
+                                <p v-else-if="!isSent && isOnline" class="testoPocoRisalto">Online</p>
+                                <p v-else class="testoPocoRisalto">Sta scrivendo..</p>
 
                             </div>
                         </div>

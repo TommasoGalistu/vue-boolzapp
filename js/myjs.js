@@ -266,8 +266,9 @@ createApp({
 
         const UltimoAccessoOrario = ref('');
         const cambiaNotifiche = ref(true);
-
-
+        const isSent = ref(true)
+        const switchStatus = ref(0);
+        const isOnline = ref(true)
 
 
 
@@ -290,21 +291,20 @@ createApp({
 
         // invio messaggio e risposta automatica dopo 2 secondi
         const invioMessaggio = () => {
-            // setTimeout(() =>{
-            //     return UltimoAccessoOrario.value = 'Online';
-            // }, 1000)
-            // setTimeout(() =>{
-            //     return UltimoAccessoOrario.value = 'Sta scrivento...';
-                
-            // }, 2000)
+            setTimeout(() =>{
+                isSent.value = false;
+            }, 2000)
+            setTimeout(() =>{
+                isOnline.value = false;
+            }, 5000)
             if (messaggioNuovo.value.message.trim().length > 0) {
                 contacts.value[numAmico.value].messages.push({ ...messaggioNuovo.value });
                 messaggioNuovo.value.message = ''
                 const numRandom = Math.floor(Math.random() * risposta.value.length)
                 setTimeout(() => {
                     contacts.value[numAmico.value].messages.push(risposta.value[numRandom]);
-                    UltimoAccessoOrario.value = 'Online';
-                }, 8000)
+                    isSent.value = true;
+                }, 15000)
             }
             
         };
@@ -385,10 +385,14 @@ createApp({
                 
                 if (ultimoAccesso[i].status === 'received') {
                     UltimoAccessoOrario.value = `Ultimo accesso il ${ultimoAccesso[i].date.slice(0, 10)} alle ${ultimoAccesso[i].date.slice(11, 16)}`
+                    
                     return UltimoAccessoOrario
                 }
             }
+            
+            
         }
+        
         // funzione per aprire il menu eliminazione chat
         const menuChat = () =>{
             if(!clickedMenu.value){
@@ -459,7 +463,10 @@ createApp({
             datiPersonali,
             cambiaNotifiche,
             notificaStatus,
-            aggiornaOra
+            aggiornaOra,
+            isSent,
+            switchStatus,
+            isOnline
             
         };
     }
