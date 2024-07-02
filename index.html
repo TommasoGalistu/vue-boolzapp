@@ -126,7 +126,7 @@
                             <i class="fa-solid fa-circle-notch"></i>
                             <i class="fa-solid fa-message"></i>
                             <i @click="menuChat()" class="fa-solid fa-ellipsis-vertical"></i>
-                            <ul class="windImpostazioni" :class="{'visible': isClicked()}">
+                            <ul :style="colorBlack" class="windImpostazioni" :class="{'visible': isClicked()}">
                                 <li @click="eliminateChat(numAmico)">Delete chat</li>
                             </ul>
                         </div>
@@ -138,11 +138,11 @@
                                         {{messaggioInviato(messaggio)}}
                                     </div>
                                 
-                                    <ul class="windImpostazioni" :class="{'visible': isVisible(messaggio)}">
+                                    <ul :style="colorBlack" class="windImpostazioni" :class="{'visible': isVisible(messaggio)}">
                                         <li>Message info</li>
                                         <li @click.stop="eliminateMessage(index)">Delete message</li>
                                     </ul>
-                                    <span class="orarioInvio">{{orarioMessaggio(index)}}</span>
+                                    <span :style="colorBlack" class="orarioInvio">{{orarioMessaggio(index)}}</span>
                                     <i class="fa-solid fa-angle-down" @click.stop="aperturaMenu(messaggio)"></i>
                                     <span class="windImpostazioni"></span>
                                 </div>
