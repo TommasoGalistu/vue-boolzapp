@@ -42,9 +42,10 @@
 .containerChat{
     width: calc((var(--larghezzaFInestra) / 12) * 8);
     border: 0.25px solid #d7d7d7;
+    color: #000000
 }
 .person.pricipal{
-    background-color: #eaeaea;
+    /* background-color: #eaeaea; */
     position: relative;
     align-items: center;
 }

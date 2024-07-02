@@ -33,16 +33,20 @@
         <div class="parteAlta">
             <div id="app" class="contPrincipale">
                 <!-- parte di sinistra con le chat da cliccare -->
-                <nav class="containerNav">
+                <nav class="containerNav" >
                     <!-- avatar del proprietario -->
-                    <div class="person pricipal">
-                        <div class="icon">
+                    <div class="person pricipal" :style="backgroundStyle">
+                        <div class="icon" >
                             <div class="contFoto">
                                 <img :src="datiPersonali.avatar" alt="">
                             </div>
                             <span>{{datiPersonali.name}}</span>
                         </div>
                         <div class="navMenu">
+                            <label class="switch" @click="changeStyle">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                              </label>
                             <i class="fa-solid fa-circle-notch"></i>
                             <i class="fa-solid fa-message"></i>
                             <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -68,12 +72,12 @@
                         
                     </div>
                     <!-- input di ricerca persone -->
-                    <div class="contInput">
+                    <div class="contInput" :style="backgroundStyle">
                         <input type="text" placeholder="Cerca o inizia una nuova chat" @keyup="ricercaPersone" v-model="inputForFilter">
                     </div>
 
                     <!-- persone in chat elenco -->
-                    <div class="containerAmici">
+                    <div class="containerAmici" :style="backgroundStyle">
                         <div class="person" :class="indiceFiltrato === index ? 'active' : ''" v-for="(amico, index) in filtraAmici" :key="index" @click.stop="selezionaPersona(index)">
                             <div class="icon">
                                 <div class="contFoto align-self">
@@ -103,7 +107,7 @@
                     </div>
 
                 </div>
-                <div v-else class="containerChat">
+                <div v-else class="containerChat" :style="backgroundStyle">
                     
                     <div class="person pricipal">
                         <div class="icon">
@@ -130,7 +134,7 @@
                     <div class="sfondo">
                         <div class="contMessaggi"  v-if="contacts[numAmico].messages.length > 0">
                                 <div class="messaggio" :class="messaggio.status"  v-for="(messaggio, index) in contacts[numAmico].messages">
-                                    <div>
+                                    <div :style="colorBlack">
                                         {{messaggioInviato(messaggio)}}
                                     </div>
                                 
@@ -159,7 +163,7 @@
         <!-- </div> -->
     </main>
     
-
+    
     <script src="js/myjs.js"></script>
 </body>
 </html>

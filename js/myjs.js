@@ -2,6 +2,7 @@ const { createApp, ref, onMounted, computed, nextTick } = Vue;
 
 createApp({
     setup() {
+
         const datiPersonali = ref({
             name: 'Tommaso Galistu',
             avatar: './img/img12.png',
@@ -264,12 +265,22 @@ createApp({
 
         );
 
-        const UltimoAccessoOrario =ref('');
+        const UltimoAccessoOrario = ref('');
         const cambiaNotifiche = ref(true);
         const isSent = ref(true);
         const isOnline = ref(false);
-        const startPage = ref(false)
-
+        const startPage = ref(false);
+        // colori da cambiare con il click
+        const backgroundStyle = {
+            backgroundColor: '#000000',
+            color: 'white',
+            border: 'black'
+        };
+        const colorBlack = {
+            
+            color: 'black',
+            
+        };
 
 
 
@@ -294,20 +305,20 @@ createApp({
         // invio messaggio e risposta automatica dopo 2 secondi
         const invioMessaggio = () => {
             // diventa online
-            setTimeout(() =>{
+            setTimeout(() => {
                 isSent.value = false;
                 isOnline.value = true;
             }, 2000)
             // sta scrivendo dopo 4 secondi
-            setTimeout(() =>{
+            setTimeout(() => {
                 isOnline.value = false;
             }, 4000)
             // diventa online di nuovo
-            setTimeout(() =>{
+            setTimeout(() => {
                 isOnline.value = true;
             }, 7500)
             // ultimo accesso
-            setTimeout(() =>{
+            setTimeout(() => {
                 isOnline.value = false;
                 isSent.value = true;
             }, 10000)
@@ -317,48 +328,48 @@ createApp({
                 const numRandom = Math.floor(Math.random() * risposta.value.length)
                 setTimeout(() => {
                     contacts.value[numAmico.value].messages.push(risposta.value[numRandom]);
-                    
+
                 }, 8700)
             }
         };
 
-        
+
         const ricercaPersone = () => {
             return filtraAmici
         }
         // ricerca persone nella barra input
         const filtraAmici = computed(() => {
-            const filteredContacts = contacts.value.filter(persona => 
+            const filteredContacts = contacts.value.filter(persona =>
                 persona.name.toLowerCase().includes(inputForFilter.value.toLowerCase())
             );
-        
+
             const sortedContacts = filteredContacts.map(persona => {
-                const latestMessageDate = persona.messages.length > 0 
+                const latestMessageDate = persona.messages.length > 0
                     ? DateTime.fromFormat(persona.messages[persona.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss')
                     : null;
-            
+
                 return {
                     ...persona,
                     latestMessageDate
                 };
             });
-        
+
             sortedContacts.sort((a, b) => {
                 if (a.latestMessageDate && b.latestMessageDate) {
-                    return  b.latestMessageDate - a.latestMessageDate;
+                    return b.latestMessageDate - a.latestMessageDate;
                 }
-                if (a.latestMessageDate){
+                if (a.latestMessageDate) {
                     return -1;
-                } 
-                    
-                if (b.latestMessageDate){
+                }
+
+                if (b.latestMessageDate) {
                     return 1;
-                } 
-                
+                }
+
             });
             console.log(orario)
             return sortedContacts;
-        
+
         });
 
         const aperturaMenu = (messaggio) => {
@@ -393,9 +404,9 @@ createApp({
         };
         const statoAmicoChat = (posizione) => {
             const ultimoAccesso = contacts.value[posizione].messages;
-            
+
             for (let i = ultimoAccesso.length - 1; i >= 0; i--) {
-                
+
                 if (ultimoAccesso[i].status === 'received') {
                     UltimoAccessoOrario.value = `Ultimo accesso il ${ultimoAccesso[i].date.slice(0, 10)} alle ${ultimoAccesso[i].date.slice(11, 16)}`
                     return UltimoAccessoOrario
@@ -403,38 +414,44 @@ createApp({
             }
         }
         // funzione per aprire il menu eliminazione chat
-        const menuChat = () =>{
-            if(!clickedMenu.value){
+        const menuChat = () => {
+            if (!clickedMenu.value) {
                 clickedMenu.value = true;
-            }else{
+            } else {
                 clickedMenu.value = false;
             }
-            
+
         }
         // funzione per aprire e chiudere menu con classe
-        const isClicked = () =>{
+        const isClicked = () => {
             return clickedMenu.value
         }
         // funzione click per eliminare la chat dai dati
-        const eliminateChat = (posizione) =>{
+        const eliminateChat = (posizione) => {
             contacts.value.splice(posizione, 1)
             console.log('elimnate')
         }
 
-        const notificaStatus = () =>{
-            if(cambiaNotifiche.value){
+        const notificaStatus = () => {
+            if (cambiaNotifiche.value) {
                 cambiaNotifiche.value = false;
-            }else{
+            } else {
                 cambiaNotifiche.value = true;
             }
         }
 
-        const aggiornaOra = () =>{
-            setInterval(() =>{
+        const aggiornaOra = () => {
+            setInterval(() => {
                 DateTime = luxon.DateTime;
                 console.log('orario aggiornato', DateTime)
-            },1000 * 60)
+            }, 1000 * 60)
         }
+
+        const changeStyle = () => {
+
+
+        }
+
         onMounted(() => {
             contatti.value = filtraAmici
 
@@ -474,8 +491,11 @@ createApp({
             aggiornaOra,
             isSent,
             isOnline,
-            startPage
-            
+            startPage,
+            changeStyle,
+            backgroundStyle,
+            colorBlack
+
         };
     }
 }).mount('#app');
