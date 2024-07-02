@@ -271,16 +271,9 @@ createApp({
         const isOnline = ref(false);
         const startPage = ref(false);
         // colori da cambiare con il click
-        const backgroundStyle = {
-            backgroundColor: '#000000',
-            color: 'white',
-            border: 'black'
-        };
-        const colorBlack = {
-            
-            color: 'black',
-            
-        };
+        const backgroundStyle = ref({});
+        const colorBlack = ref({});
+        const switchCounter = ref(false)
 
 
 
@@ -448,8 +441,19 @@ createApp({
         }
 
         const changeStyle = () => {
-
-
+            if(!switchCounter.value){
+                colorBlack.value = {color: 'black',}
+                backgroundStyle.value = {
+                    backgroundColor: '#000000',
+                    color: 'white',
+                    border: 'black'}
+                    switchCounter.value = true
+            }else{
+                colorBlack.value = {}
+                backgroundStyle.value = {};
+                switchCounter.value = false
+            }
+            
         }
 
         onMounted(() => {
@@ -494,7 +498,8 @@ createApp({
             startPage,
             changeStyle,
             backgroundStyle,
-            colorBlack
+            colorBlack,
+            
 
         };
     }

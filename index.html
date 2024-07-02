@@ -43,8 +43,8 @@
                             <span>{{datiPersonali.name}}</span>
                         </div>
                         <div class="navMenu">
-                            <label class="switch" @click="changeStyle">
-                                <input type="checkbox">
+                            <label class="switch" >
+                                <input type="checkbox" @click="changeStyle">
                                 <span class="slider round"></span>
                               </label>
                             <i class="fa-solid fa-circle-notch"></i>
@@ -109,7 +109,7 @@
                 </div>
                 <div v-else class="containerChat" :style="backgroundStyle">
                     
-                    <div class="person pricipal">
+                    <div class="person pricipal" :style="backgroundStyle">
                         <div class="icon">
                             <div class="contFoto">
                                 <img :src="contacts[numAmico].avatar" alt="">
