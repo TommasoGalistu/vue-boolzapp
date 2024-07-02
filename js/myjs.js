@@ -405,6 +405,7 @@ createApp({
         // funzione click per eliminare la chat dai dati
         const eliminateChat = (posizione) =>{
             contacts.value.splice(posizione, 1)
+            clickedMenu.value = false;
             
         }
 
@@ -468,5 +469,3 @@ createApp({
 
 
 
-//elimina la chat che si trova nella posizione 1 all'inizio dei 
-// dati
