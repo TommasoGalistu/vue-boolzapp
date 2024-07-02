@@ -278,6 +278,7 @@ createApp({
         const backgroundStyle = ref({});
         const colorBlack = ref({});
         const switchCounter = ref(false)
+        const filtroColore = ref({})
 
         // inizio funzioni
 
@@ -490,11 +491,13 @@ createApp({
                     backgroundColor: '#000000',
                     color: 'white',
                     border: 'black'}
-                    switchCounter.value = true
+                switchCounter.value = true
+                filtroColore.value = {filter:'brightness(80%)'}
             }else{
                 colorBlack.value = {}
                 backgroundStyle.value = {};
                 switchCounter.value = false
+                filtroColore.value = {}
             }
             
         }
@@ -544,7 +547,8 @@ createApp({
             changeStyle,
             backgroundStyle,
             colorBlack,
-            chiudiTuttiMenu
+            chiudiTuttiMenu,
+            filtroColore
 
         };
     }

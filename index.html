@@ -131,7 +131,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="sfondo" @click="chiudiTuttiMenu()">
+                    <div class="sfondo" @click="chiudiTuttiMenu()" :style="filtroColore">
                         <div class="contMessaggi"  v-if="contacts[numAmico].messages.length > 0">
                                 <div class="messaggio" :class="messaggio.status"  v-for="(messaggio, index) in contacts[numAmico].messages">
                                     <div :style="colorBlack">
