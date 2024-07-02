@@ -264,11 +264,12 @@ createApp({
 
         );
 
-        const UltimoAccessoOrario = ref('');
+        const UltimoAccessoOrario =ref('');
         const cambiaNotifiche = ref(true);
-        const isSent = ref(true)
-        const switchStatus = ref(0);
-        const isOnline = ref(true)
+        const isSent = ref(true);
+        const isOnline = ref(false);
+        const startPage = ref(false)
+
 
 
 
@@ -287,28 +288,29 @@ createApp({
             indiceFiltrato.value = posizione;
             // chiudi le possibili finestre aperte
             clickedMenu.value = false;
+            startPage.value = true
         };
 
         // invio messaggio e risposta automatica dopo 2 secondi
         const invioMessaggio = () => {
-            // impostazione timer per far apparire stato 
             // diventa online
             setTimeout(() =>{
                 isSent.value = false;
+                isOnline.value = true;
             }, 2000)
-            // sta scrivendo
+            // sta scrivendo dopo 4 secondi
             setTimeout(() =>{
                 isOnline.value = false;
-            }, 5000)
-            // ha finito di scrivere ed è online
+            }, 4000)
+            // diventa online di nuovo
             setTimeout(() =>{
                 isOnline.value = true;
-            }, 13000)
+            }, 7500)
+            // ultimo accesso
             setTimeout(() =>{
                 isOnline.value = false;
                 isSent.value = true;
-            }, 17000)
-            
+            }, 10000)
             if (messaggioNuovo.value.message.trim().length > 0) {
                 contacts.value[numAmico.value].messages.push({ ...messaggioNuovo.value });
                 messaggioNuovo.value.message = ''
@@ -316,9 +318,8 @@ createApp({
                 setTimeout(() => {
                     contacts.value[numAmico.value].messages.push(risposta.value[numRandom]);
                     
-                }, 15000)
+                }, 8700)
             }
-            
         };
 
         
@@ -355,7 +356,7 @@ createApp({
                 } 
                 
             });
-            
+            console.log(orario)
             return sortedContacts;
         
         });
@@ -397,14 +398,10 @@ createApp({
                 
                 if (ultimoAccesso[i].status === 'received') {
                     UltimoAccessoOrario.value = `Ultimo accesso il ${ultimoAccesso[i].date.slice(0, 10)} alle ${ultimoAccesso[i].date.slice(11, 16)}`
-                    
                     return UltimoAccessoOrario
                 }
             }
-            
-            
         }
-        
         // funzione per aprire il menu eliminazione chat
         const menuChat = () =>{
             if(!clickedMenu.value){
@@ -421,8 +418,7 @@ createApp({
         // funzione click per eliminare la chat dai dati
         const eliminateChat = (posizione) =>{
             contacts.value.splice(posizione, 1)
-            clickedMenu.value = false;
-            
+            console.log('elimnate')
         }
 
         const notificaStatus = () =>{
@@ -436,11 +432,11 @@ createApp({
         const aggiornaOra = () =>{
             setInterval(() =>{
                 DateTime = luxon.DateTime;
-                
+                console.log('orario aggiornato', DateTime)
             },1000 * 60)
         }
         onMounted(() => {
-            contatti.value = filtraAmici;
+            contatti.value = filtraAmici
 
         });
 
@@ -477,8 +473,8 @@ createApp({
             notificaStatus,
             aggiornaOra,
             isSent,
-            switchStatus,
-            isOnline
+            isOnline,
+            startPage
             
         };
     }
@@ -488,3 +484,5 @@ createApp({
 
 
 
+// se elimino tutti i messaggio e vado a cliccare un'altra
+// chat mi da errore

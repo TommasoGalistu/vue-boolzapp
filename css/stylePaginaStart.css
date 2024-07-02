@@ -1,0 +1,29 @@
+.otherContainerStart{
+    background-color: #fdf5ea;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contPresentazione{
+    width: 70%;
+    text-align: center;
+}
+.contPresentazione img{
+    width: 70%;
+    padding-bottom: 3rem;
+}
+.contPresentazione h2, .contPresentazione p{
+    padding-top: 0.5rem;
+}
+
+.contPresentazione button{
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    border-radius: 15px;
+    background-color: #ffb84d;
+} 
+.contPresentazione button:hover{
+    cursor: pointer;
+} 

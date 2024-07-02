@@ -19,8 +19,10 @@
     <link rel="icon" type="image/x-icon" href="img/logoEsfondo/whatsapp.svg">
     <!-- link variable -->
      <link rel="stylesheet" href="css/variable.css">
-     <!-- link hover -->
-      <link rel="stylesheet" href="css/hover.css">
+    <!-- link hover -->
+    <link rel="stylesheet" href="css/hover.css">
+    <!-- style pagina iniziale appena carico la pagina -->
+    <link rel="stylesheet" href="css/stylePaginaStart.css">
     <!-- style css -->
     <link rel="stylesheet" href="css/style.css">
 
@@ -92,7 +94,17 @@
                     
                 </nav>
                 <!-- parte di destra con la chat aperta -->
-                <div class="containerChat">
+                <div v-if="numAmico === 0 && !startPage" class="otherContainerStart">
+                    <div class="contPresentazione">
+                        <img src="img/logoEsfondo/1087712.jpg" alt="" >   
+                        <h2>Scarica whatsapp per Windows</h2>
+                        <p>Fai chiamate, condividi lo schermo e trai vantaggio da una navigazione più rapida scaricando l'app per Windows.</p>
+                        <button>Scarica da Microsoft Store</button>
+                    </div>
+
+                </div>
+                <div v-else class="containerChat">
+                    
                     <div class="person pricipal">
                         <div class="icon">
                             <div class="contFoto">
