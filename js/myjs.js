@@ -200,11 +200,11 @@ createApp({
                 messages: [],
             }
         ]);
-        // contatti filtrati da input utente
-        // const contactsFilter = ref([]);
+
         // input utente per filtrare persone
         const inputForFilter = ref('');
-        // variabile che decide quali amici, filtrati o no, da aggiungere alla lista
+        // variabile che decide quali amici, filtrati o no, 
+        // da aggiungere alla lista
         const contatti = ref('');
         // numero che va ad aggiornare le chat al click
         const numAmico = ref(0);
@@ -213,8 +213,7 @@ createApp({
         const selectedMessage = ref(null);
         // costante per sapere se il menu della chat è stato cliccato
         const clickedMenu = ref(null);
-        // classe per visualizzazione chat attiva
-        // const active = ref('');
+        
         // messaggio nuovo da inviare da input
         var DateTime = luxon.DateTime;
         const orario = DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss');
@@ -266,19 +265,24 @@ createApp({
         );
 
         const UltimoAccessoOrario = ref('');
+        // l'icona notifiche cambia al click
         const cambiaNotifiche = ref(true);
+        // costanti che indicano quale testo far apparire(guarda funzione invioMess)
         const isSent = ref(true);
         const isOnline = ref(false);
+        // costante che decide che fa apparire pubblicità 
+        // di benvenuto e non la prima chat
         const startPage = ref(false);
         // colori da cambiare con il click
         const backgroundStyle = ref({});
         const colorBlack = ref({});
         const switchCounter = ref(false)
 
-
-
         // inizio funzioni
+
+
         // inserimento dinamico della chat
+        // la funzione è presente nel file html
         const messaggioInviato = (messaggio) => {
             return messaggio.message
 
@@ -289,36 +293,44 @@ createApp({
             // Trova l'indice originale della persona selezionata nella lista completa
             const indiceOriginale = contacts.value.findIndex(persona => persona.name === filtraAmici.value[posizione].name);
             numAmico.value = indiceOriginale;
+            // per far si che al click colori la persona selezionata
             indiceFiltrato.value = posizione;
             // chiudi le possibili finestre aperte
             clickedMenu.value = false;
+            // quando clicchi su una chat si chiude la pubblicità 
+            // e si apre la chat
             startPage.value = true
         };
 
         // invio messaggio e risposta automatica dopo 2 secondi
         const invioMessaggio = () => {
+            // modalità fake di risposta dell'utente
             // diventa online
             setTimeout(() => {
                 isSent.value = false;
                 isOnline.value = true;
             }, 2000)
-            // sta scrivendo dopo 4 secondi
+            // sta scrivendo dopo 4 secondi che è online
             setTimeout(() => {
                 isOnline.value = false;
             }, 4000)
-            // diventa online di nuovo
+            // finisce di scrivere e diventa online di nuovo
             setTimeout(() => {
                 isOnline.value = true;
             }, 7500)
-            // ultimo accesso
+            // in 8 secondi manda il mess(guarda settimeout sotto)
+            // e esce dalla chat facendo visualizzare l'ultimo accesso
             setTimeout(() => {
                 isOnline.value = false;
                 isSent.value = true;
             }, 10000)
+            // inserimento della nuova chat se non è vuota di caratteri
             if (messaggioNuovo.value.message.trim().length > 0) {
                 contacts.value[numAmico.value].messages.push({ ...messaggioNuovo.value });
                 messaggioNuovo.value.message = ''
+                // risposta random
                 const numRandom = Math.floor(Math.random() * risposta.value.length)
+                // risposta dopo 8.7 secondi
                 setTimeout(() => {
                     contacts.value[numAmico.value].messages.push(risposta.value[numRandom]);
 
@@ -326,16 +338,19 @@ createApp({
             }
         };
 
-
+        // funzione che si attiva quando scrivo su input ricerca
         const ricercaPersone = () => {
             return filtraAmici
         }
-        // ricerca persone nella barra input
+
+        // nuova base dati filtrata(se c'è bisogno) e in ordine in
+        // base all'ultimo messaggio ricevuto
         const filtraAmici = computed(() => {
+            // filtro se c'è bisogno
             const filteredContacts = contacts.value.filter(persona =>
                 persona.name.toLowerCase().includes(inputForFilter.value.toLowerCase())
             );
-
+            // prendo tutti i contatti con messaggi e ultima data
             const sortedContacts = filteredContacts.map(persona => {
                 const latestMessageDate = persona.messages.length > 0
                     ? DateTime.fromFormat(persona.messages[persona.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss')
@@ -346,7 +361,7 @@ createApp({
                     latestMessageDate
                 };
             });
-
+            // li metto in ordine
             sortedContacts.sort((a, b) => {
                 if (a.latestMessageDate && b.latestMessageDate) {
                     return b.latestMessageDate - a.latestMessageDate;
@@ -360,41 +375,55 @@ createApp({
                 }
 
             });
-            console.log(orario)
+            
             return sortedContacts;
 
         });
 
+        // apertura menu messaggio singolo
         const aperturaMenu = (messaggio) => {
+            // chiudo, se è aperto, il menu di eliminazione completa chat
+            clickedMenu.value = false;
+            // se è aperto lo chiuse se è chiuso lo apro
             if (selectedMessage.value === messaggio) {
                 selectedMessage.value = null; // Chiudi il menu se il messaggio è già selezionato
             } else {
                 selectedMessage.value = messaggio; // Altrimenti apri il menu per il messaggio cliccato
             }
-
         };
 
+        // attraverso il click di apertura menu prendo il messaggio
+        // se rispetta la condizione si aprirà il menu con la 
+        // classe visible
         const isVisible = (messaggio) => {
+            console.log(messaggio)
             return selectedMessage.value === messaggio;
         };
 
+        // elimino messaggio selezionato
         const eliminateMessage = (posMessaggio) => {
             if (contacts.value[numAmico.value].messages.length > 0) {
                 contacts.value[numAmico.value].messages.splice(posMessaggio, 1)
             }
 
         }
+
         // orario dell'ultimo messaggio inviato o ricevuto
         const ultimoMessaggio = (amico) => {
             const messaggi = amico.messages;
             const messaggio = messaggi[messaggi.length - 1];
             return messaggio.date.slice(11, 16);
         };
+
+        // inserimento di orario di invio messaggio nel messaggio
         const orarioMessaggio = (index) => {
             const oraioInvio = contacts.value[numAmico.value].messages[index].date.slice(11, 16);
 
             return oraioInvio
         };
+
+        // attraverso un ciclo prendo l'ultimo orario del suo
+        // messaggio e lo inserisco nello stato
         const statoAmicoChat = (posizione) => {
             const ultimoAccesso = contacts.value[posizione].messages;
 
@@ -406,6 +435,7 @@ createApp({
                 }
             }
         }
+
         // funzione per aprire il menu eliminazione chat
         const menuChat = () => {
             if (!clickedMenu.value) {
@@ -415,16 +445,26 @@ createApp({
             }
 
         }
-        // funzione per aprire e chiudere menu con classe
+
+        // funzione per aprire e chiudere menu con classe per
+        // eliminazione intera chat
         const isClicked = () => {
             return clickedMenu.value
         }
+
+        // chiudo tutti le finestre menu se clicco sullo sfondo
+        const chiudiTuttiMenu = () =>{
+            clickedMenu.value = false;
+            selectedMessage.value = null;
+        }
+
         // funzione click per eliminare la chat dai dati
         const eliminateChat = (posizione) => {
             contacts.value.splice(posizione, 1)
             console.log('elimnate')
         }
 
+        // cambio immagine per l'attivazione delle notifiche o contrario
         const notificaStatus = () => {
             if (cambiaNotifiche.value) {
                 cambiaNotifiche.value = false;
@@ -433,13 +473,15 @@ createApp({
             }
         }
 
-        const aggiornaOra = () => {
-            setInterval(() => {
-                DateTime = luxon.DateTime;
-                console.log('orario aggiornato', DateTime)
-            }, 1000 * 60)
-        }
-
+        // const aggiornaOra = () => {
+        //     setInterval(() => {
+        //         DateTime = luxon.DateTime;
+        //         console.log('orario aggiornato', DateTime)
+        //     }, 1000 * 60)
+        // }
+         
+        // attraverso il click cambio il contenuto
+        // dello style notte predefinito 
         const changeStyle = () => {
             if(!switchCounter.value){
                 colorBlack.value = {color: 'black',}
@@ -457,6 +499,8 @@ createApp({
         }
 
         onMounted(() => {
+            // all'esecuzione di tutto uso la variabile
+            // contatti per utilizzare una base dati diversa
             contatti.value = filtraAmici
 
         });
@@ -492,14 +536,14 @@ createApp({
             datiPersonali,
             cambiaNotifiche,
             notificaStatus,
-            aggiornaOra,
+            // aggiornaOra,
             isSent,
             isOnline,
             startPage,
             changeStyle,
             backgroundStyle,
             colorBlack,
-            
+            chiudiTuttiMenu
 
         };
     }
@@ -508,6 +552,3 @@ createApp({
 // problemi da risolvere
 
 
-
-// se elimino tutti i messaggio e vado a cliccare un'altra
-// chat mi da errore
