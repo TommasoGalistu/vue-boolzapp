@@ -149,6 +149,7 @@ i.fa-microphone{
 
 .sfondo{
     height: calc(100% - var(--altezzaPersona) * 2);
+    overflow-y: auto;
     background-image: url('../img/logoEsfondo/chatSfondo.jpg');
     
 }
