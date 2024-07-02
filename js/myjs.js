@@ -343,7 +343,7 @@ createApp({
                 } 
                 
             });
-            console.log(orario)
+            
             return sortedContacts;
         
         });
@@ -405,7 +405,7 @@ createApp({
         // funzione click per eliminare la chat dai dati
         const eliminateChat = (posizione) =>{
             contacts.value.splice(posizione, 1)
-            console.log(posizione)
+            
         }
 
         const notificaStatus = () =>{
@@ -419,7 +419,7 @@ createApp({
         const aggiornaOra = () =>{
             setInterval(() =>{
                 DateTime = luxon.DateTime;
-                console.log('orario aggiornato', DateTime)
+                
             },1000 * 60)
         }
         onMounted(() => {
