@@ -463,7 +463,8 @@ createApp({
         // funzione click per eliminare la chat dai dati
         const eliminateChat = (posizione) => {
             contacts.value.splice(posizione, 1)
-            
+            clickedMenu.value = false;
+            selectedMessage.value = null;
         }
 
         // cambio immagine per l'attivazione delle notifiche o contrario
