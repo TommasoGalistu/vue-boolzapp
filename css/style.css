@@ -139,8 +139,21 @@ i.fa-microphone{
     height: 70%;
     border: 1px solid rgb(220, 220, 220);
     padding-left: 0.5rem;
+    margin-right: 0.5rem;
+    
+
+    
+}
+.contInput input:focus {
+    outline: none;
 }
 
+
+.contInput .fa-magnifying-glass{
+    padding: 0.15rem;
+    margin-left: 0.5rem;
+    border: 1px solid rgb(220, 220, 220);
+}
 .containerAmici{
     height: calc(100% - 9.5rem);
     width: 100%;
