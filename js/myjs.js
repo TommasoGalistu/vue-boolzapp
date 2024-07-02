@@ -396,7 +396,7 @@ createApp({
         // se rispetta la condizione si aprirà il menu con la 
         // classe visible
         const isVisible = (messaggio) => {
-            console.log(messaggio)
+            
             return selectedMessage.value === messaggio;
         };
 
@@ -461,7 +461,7 @@ createApp({
         // funzione click per eliminare la chat dai dati
         const eliminateChat = (posizione) => {
             contacts.value.splice(posizione, 1)
-            console.log('elimnate')
+            
         }
 
         // cambio immagine per l'attivazione delle notifiche o contrario
