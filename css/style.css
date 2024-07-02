@@ -248,3 +248,6 @@ i.fa-microphone{
     background-color: rgb(216, 216, 216);
 }
 
+.notUse:hover {
+    cursor: not-allowed;
+}

@@ -47,7 +47,7 @@
                                 <input type="checkbox" @click="changeStyle">
                                 <span class="slider round"></span>
                               </label>
-                            <i class="fa-solid fa-circle-notch"></i>
+                            <i class="fa-solid fa-circle-notch notUse"></i>
                             <i class="fa-solid fa-message"></i>
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
@@ -125,7 +125,7 @@
                         <div class="navMenu">
                             <i class="fa-solid fa-circle-notch"></i>
                             <i class="fa-solid fa-message"></i>
-                            <i @click="menuChat()" class="fa-solid fa-ellipsis-vertical"></i>
+                            <i @click="menuChat()" class="fa-solid fa-ellipsis-vertical attivo"></i>
                             <ul :style="colorBlack" class="windImpostazioni" :class="{'visible': isClicked()}">
                                 <li @click="eliminateChat(numAmico)">Delete chat</li>
                             </ul>
