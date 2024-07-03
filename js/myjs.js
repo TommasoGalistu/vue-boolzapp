@@ -199,7 +199,9 @@ createApp({
                 avatar: './img/img10.png',
                 visible: true,
                 messages: [],
-            }
+            },
+
+
         ]);
 
         // input utente per filtrare persone
@@ -214,7 +216,7 @@ createApp({
         const selectedMessage = ref(null);
         // costante per sapere se il menu della chat è stato cliccato
         const clickedMenu = ref(null);
-        
+
         // messaggio nuovo da inviare da input
         var DateTime = luxon.DateTime;
         const orario = DateTime.now().toFormat('dd/MM/yyyy HH:mm:ss');
@@ -292,7 +294,6 @@ createApp({
 
         // invio messaggio e risposta automatica dopo 9 secondi
         const invioMessaggio = () => {
-
             // inserimento della nuova chat se non è vuota di caratteri
             if (messaggioNuovo.value.message.trim().length > 0) {
                 // modalità fake di risposta dell'utente
@@ -338,6 +339,7 @@ createApp({
 
         // click della persona e visualizzazione della chat
         const selezionaPersona = (posizione) => {
+
             // Trova l'indice originale della persona selezionata nella lista completa
             const indiceOriginale = contacts.value.findIndex(persona => persona.name === filtraAmici.value[posizione].name);
             numAmico.value = indiceOriginale;
@@ -348,6 +350,8 @@ createApp({
             // quando clicchi su una chat si chiude la pubblicità 
             // e si apre la chat
             startPage.value = true
+
+
         };
 
         // funzione che si attiva quando scrivo su input ricerca
@@ -362,34 +366,34 @@ createApp({
             const filteredContacts = contacts.value.filter(persona =>
                 persona.name.toLowerCase().includes(inputForFilter.value.toLowerCase())
             );
-            // prendo tutti i contatti con messaggi e ultima data
-            const sortedContacts = filteredContacts.map(persona => {
-                const latestMessageDate = persona.messages.length > 0
-                    ? DateTime.fromFormat(persona.messages[persona.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss')
-                    : null;
+            // // prendo tutti i contatti con messaggi e ultima data
+            // const sortedContacts = filteredContacts.map(persona => {
+            //     const latestMessageDate = persona.messages.length > 0
+            //         ? DateTime.fromFormat(persona.messages[persona.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss')
+            //         : null;
 
-                return {
-                    ...persona,
-                    latestMessageDate
-                };
-            });
-            // li metto in ordine
-            sortedContacts.sort((a, b) => {
-                if (a.latestMessageDate && b.latestMessageDate) {
-                    return b.latestMessageDate - a.latestMessageDate;
-                }
-                if (a.latestMessageDate) {
-                    return -1;
-                }
+            //     return {
+            //         ...persona,
+            //         latestMessageDate
+            //     };
+            // });
+            // // li metto in ordine
+            // sortedContacts.sort((a, b) => {
+            //     if (a.latestMessageDate && b.latestMessageDate) {
+            //         return b.latestMessageDate - a.latestMessageDate;
+            //     }
+            //     // if (a.latestMessageDate) {
+            //     //     return -1;
+            //     // }
 
-                if (b.latestMessageDate) {
-                    return 1;
-                }
+            //     // if (b.latestMessageDate) {
+            //     //     return 1;
+            //     // }
 
-            });
-            
-            return sortedContacts;
+            // });
 
+            // return sortedContacts;
+            return filteredContacts
         });
 
         // funzione per aprire il menu eliminazione chat
@@ -409,9 +413,12 @@ createApp({
 
         // funzione click per eliminare la chat dai dati
         const eliminateChat = (posizione) => {
+            
             contacts.value.splice(posizione, 1)
             clickedMenu.value = false;
             selectedMessage.value = null;
+            
+
         }
 
         // apertura menu messaggio singolo
@@ -428,7 +435,7 @@ createApp({
 
         // aggiorna la classe del menu cliccato
         const isVisible = (messaggio) => {
-            
+
             return selectedMessage.value === messaggio;
         };
 
@@ -440,7 +447,7 @@ createApp({
 
         }
         // chiudo tutti le finestre menu se clicco sullo sfondo
-        const chiudiTuttiMenu = () =>{
+        const chiudiTuttiMenu = () => {
             clickedMenu.value = false;
             selectedMessage.value = null;
         }
@@ -476,21 +483,22 @@ createApp({
 
         // dello style notte predefinito 
         const changeStyle = () => {
-            if(!switchCounter.value){
-                colorBlack.value = {color: 'black',}
+            if (!switchCounter.value) {
+                colorBlack.value = { color: 'black', }
                 backgroundStyle.value = {
                     backgroundColor: '#000000',
                     color: 'white',
-                    border: 'black'}
+                    border: 'black'
+                }
                 switchCounter.value = true
-                filtroColore.value = {filter:'brightness(80%)'}
-            }else{
+                filtroColore.value = { filter: 'brightness(80%)' }
+            } else {
                 colorBlack.value = {}
                 backgroundStyle.value = {};
                 switchCounter.value = false
                 filtroColore.value = {}
             }
-            
+
         }
 
 

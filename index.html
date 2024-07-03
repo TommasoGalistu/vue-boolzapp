@@ -97,6 +97,7 @@
                         </div>
                     </div>
                     
+                    
                 </nav>
                 <!-- parte di destra con la chat aperta -->
                 <div v-if="numAmico === 0 && !startPage" class="otherContainerStart">
@@ -120,6 +121,7 @@
                                 <p v-if="isSent" class="testoPocoRisalto">{{statoAmicoChat(numAmico)}}</p>
                                 <p v-else-if="!isSent && isOnline" class="testoPocoRisalto">Online</p>
                                 <p v-else class="testoPocoRisalto">Sta scrivendo..</p>
+                                <p v-if="!statoAmicoChat(numAmico) && isSent " class="testoPocoRisalto">Offline</p>
 
                             </div>
                         </div>
