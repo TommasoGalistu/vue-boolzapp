@@ -367,21 +367,21 @@ createApp({
                 persona.name.toLowerCase().includes(inputForFilter.value.toLowerCase())
             );
             // // prendo tutti i contatti con messaggi e ultima data
-            // const sortedContacts = filteredContacts.map(persona => {
-            //     const latestMessageDate = persona.messages.length > 0
-            //         ? DateTime.fromFormat(persona.messages[persona.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss')
-            //         : null;
+            const sortedContacts = filteredContacts.map(persona => {
+                const latestMessageDate = persona.messages.length > 0
+                    ? DateTime.fromFormat(persona.messages[persona.messages.length - 1].date, 'dd/MM/yyyy HH:mm:ss')
+                    : null;
 
-            //     return {
-            //         ...persona,
-            //         latestMessageDate
-            //     };
-            // });
-            // // li metto in ordine
-            // sortedContacts.sort((a, b) => {
-            //     if (a.latestMessageDate && b.latestMessageDate) {
-            //         return b.latestMessageDate - a.latestMessageDate;
-            //     }
+                return {
+                    ...persona,
+                    latestMessageDate
+                };
+            });
+            // li metto in ordine
+            sortedContacts.sort((a, b) => {
+                if (a.latestMessageDate && b.latestMessageDate) {
+                    return b.latestMessageDate - a.latestMessageDate;
+                }
             //     // if (a.latestMessageDate) {
             //     //     return -1;
             //     // }
@@ -390,10 +390,10 @@ createApp({
             //     //     return 1;
             //     // }
 
-            // });
+            });
 
-            // return sortedContacts;
-            return filteredContacts
+            return sortedContacts;
+            // return filteredContacts
         });
 
         // funzione per aprire il menu eliminazione chat
@@ -553,3 +553,6 @@ createApp({
 // problemi da risolvere
 
 
+// quando scrivo a qualcuno in chat
+// si aggiorna la posizione correttamente ma
+// la classe attiva rimane quella della posizione vecchia. 
