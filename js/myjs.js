@@ -295,26 +295,28 @@ createApp({
 
             // inserimento della nuova chat se non è vuota di caratteri
             if (messaggioNuovo.value.message.trim().length > 0) {
-                            // modalità fake di risposta dell'utente
-            // diventa online
-            setTimeout(() => {
-                isSent.value = false;
-                isOnline.value = true;
-            }, 2000)
-            // sta scrivendo dopo 4 secondi che è online
-            setTimeout(() => {
-                isOnline.value = false;
-            }, 4000)
-            // finisce di scrivere e diventa online di nuovo
-            setTimeout(() => {
-                isOnline.value = true;
-            }, 7500)
-            // in 8 secondi manda il mess(guarda settimeout sotto)
-            // e esce dalla chat facendo visualizzare l'ultimo accesso
-            setTimeout(() => {
-                isOnline.value = false;
-                isSent.value = true;
-            }, 10000)
+                // modalità fake di risposta dell'utente
+                // diventa online
+                setTimeout(() => {
+                    isSent.value = false;
+                    isOnline.value = true;
+                }, 2000)
+                // sta scrivendo dopo 4 secondi che è online
+                setTimeout(() => {
+                    isOnline.value = false;
+                }, 4000)
+                // finisce di scrivere e diventa online di nuovo
+                setTimeout(() => {
+                    isOnline.value = true;
+                }, 7500)
+                // in 8 secondi manda il mess(guarda settimeout sotto)
+                // e esce dalla chat facendo visualizzare l'ultimo accesso
+                setTimeout(() => {
+                    isOnline.value = false;
+                    isSent.value = true;
+                }, 10000)
+
+                // invio mio messaggio
                 contacts.value[numAmico.value].messages.push({ ...messaggioNuovo.value });
                 messaggioNuovo.value.message = ''
                 // risposta random
