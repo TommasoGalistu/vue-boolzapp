@@ -427,6 +427,13 @@ createApp({
       contacts.value.splice(posizione, 1);
       clickedMenu.value = false;
       selectedMessage.value = null;
+
+      // Trova il nuovo indice dell'amico selezionato
+      // const selectedContact = contacts.value[posizione++];
+      // const newIndex = filtraAmici.value.findIndex(
+      //   (persona) => persona.name === selectedContact.name
+      // );
+      selezionaPersona(indiceFiltrato.value++);
     };
 
     // apertura menu messaggio singolo
@@ -552,9 +559,3 @@ createApp({
     };
   },
 }).mount("#app");
-
-// problemi da risolvere
-
-// quando scrivo a qualcuno in chat
-// si aggiorna la posizione correttamente ma
-// la classe attiva rimane quella della posizione vecchia.
